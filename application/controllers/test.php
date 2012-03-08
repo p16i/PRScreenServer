@@ -70,6 +70,7 @@ class Test extends CI_Controller{
         //echo $img;
         //echo '<img src="'.imagejpeg($img).'" alt="some_text"/>';
         //$this->load->view('index22.html');
+	//eeeeeeeeeeeeee
         
     }
 }
