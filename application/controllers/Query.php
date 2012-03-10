@@ -7,18 +7,20 @@ Class Query extends CI_Controller{
         if(isset($_GET['id'])){ 
         #client send last id of row that it has.
             $result = $this->News_Model->get_news_by_id($_GET['id']);          
+            //echo "test";
+            
         }else{
         #if client doesn't send id parameter => return all news
             $result = $this->News_Model->get_news();
-            echo "test";
+            //echo "test";
         }
         foreach($result as $row):
+            
             $news[] = array("id"=>$row->ID,
                             "headline"=>$row->Headline,
                             "content"=>$row->Content,
                             "dateTime"=>$row->_DateTime,
-                            "catagoryID"=>$row->CatagoryID,
-                            "billboardID"=>$row->BillBoardID,
+                            "catagory"=>$row->Name,
                             "marqueeID"=>$row->MarqueeID);
         endforeach;
         $en_news = json_encode($news);
@@ -42,19 +44,20 @@ Class Query extends CI_Controller{
     function location(){
         $this->load->model("Location_Model");
         
-        if(isset($_GET['id'])){ 
+        if(isset($_GET['catagory'])){ 
         #client send last id of row that it has.
-            $result = $this->Location_Model->get_location_by_id($_GET['id']);          
+            $result = $this->Location_Model->get_location_by_catagory($_GET['catagory']);          
         }else{
         #if client doesn't send id parameter => return all news
             $result = $this->Location_Model->get_location();
         }
         foreach($result as $row):
             $location[] = array("roomNumber"=>$row->RoomNumber, 
-                            "name"=>$row->Name,
+                            "name"=>$row->RoomName,
                             "hitCounter"=>$row->HitCounter,
-                            "imagePath"=>base_url().'image_Location/'.$row->ImagePath,
-                            "catagoryID"=>$row->CatagoryID);
+                            "imagePath"=>$row->ImagePath,
+                            //"imagePath"=>base_url().'image_Location/'.$row->ImagePath,
+                            "catagory"=>$row->Name);
         endforeach;
         echo json_encode($location);
     }
