@@ -3,7 +3,16 @@
 class Test extends CI_Controller{
 	
     function index(){
-        echo "Hello World";
+        $arr = array("a"=>"abc", "b"=>"test", "c"=>null);
+        foreach($arr as $a){
+            //echo $a;
+        }
+        if($arr["c"]==null){
+            //echo "testtt";
+        }
+        //print_r($arr);
+        $this->load->view('test3');
+        //echo 'abc';
     }
     function first(){
         date_default_timezone_set("Asia/Bangkok");

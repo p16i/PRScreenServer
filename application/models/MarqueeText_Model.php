@@ -13,19 +13,36 @@ class MarqueeText_Model extends CI_Model{
     }
     
     function insert($row){
-        $this->db->query('INSERT INTO news 
+        $this->db->query('INSERT INTO marqueetext 
                           VALUES    (null,
-                                    '.$row['content'].',
-                                    '.$row['datetime'].',   
-                                    '.$row['isEnable'].')'
+                                    "'.$row['content'].'",
+                                    "'.$row['datetime'].'",   
+                                    '.$row['isEnable'].',
+                                    '.$row['newsID'].')'
                         );
     }
     
-    function set_enable($row){
-        $this->db->query('UPDATE marqueetext 
-                          SET isEnable='.$row['isEnable'].' 
-                          WHERE id='.$row['id']);
+    function set_enable($allid){
+        $this->disable_all();
+        $temp = '(';
+        foreach($allid as $id){
+            $temp = $temp.$id.','; 
+        }
+        $temp=$temp.'0)';
+        $this->db->query('UPDATE marqueetext  
+                          SET isEnable = TRUE 
+                          WHERE id in '.$temp);
     }
     
+    function edit($row){
+        $this->db->query('UPDATE marqueetext 
+                          SET Content = "'.$row['content'].'" 
+                          WHERE newsID = '.$row['newsID']);
+    }
+    
+    function delete($id){
+        $this->db->query('DELETE FROM marqueetext 
+                            WHERE ID = '.$id);
+    }
 }
 ?>

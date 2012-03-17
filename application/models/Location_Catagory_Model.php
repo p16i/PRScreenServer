@@ -10,7 +10,7 @@ class Location_Catagory_Model extends CI_Model{
     function insert($row){
         $this->db->query('INSERT INTO location_catagory 
                           VALUES    (null,
-                                    '.$row['name'].')'
+                                    '.$row['catagory'].')'
                         );
     }
     
