@@ -33,6 +33,10 @@ $(document).ready(function(){
         scrollToPage("#marquee_page");
           e.preventDefault();
     });
+      $(".billboard_link").click(function(e){
+        scrollToPage("#billboard_page");
+          e.preventDefault();
+    });
 
     $(window).scroll(function () { 
           

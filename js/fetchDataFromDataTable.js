@@ -4,8 +4,13 @@
  */
 
 $(document).ready(function(){
-     $('#example').dataTable();
-
+     $('#news_table').dataTable({ });
+     $('#marqueetext_table').dataTable({ });
+     $('#location_table').dataTable({});
+     $('#guestbook_table').dataTable({});
+     $('#gallery_table').dataTable(
+     {"iDisplayLength": 5,
+     "aLengthMenu": [[5], [5]]});
 
 });
 

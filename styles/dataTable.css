@@ -139,7 +139,6 @@ table.display {
     margin: 0 auto;
     clear: both;
     width: 100%;
-
     /* Note Firefox 3.5 and before have a bug with border-collapse
      * ( https://bugzilla.mozilla.org/show%5Fbug.cgi?id=155955 ) 
      * border-spacing: 0; is one possible option. Conditional-css.com is
@@ -218,13 +217,35 @@ th:active {
 */
 
 
-
+/*
+  Default Color 
+*/
 tr.odd {
     background-color: #0134c5;
 }
 
 tr.even {
     background-color: slateblue;
+}
+
+/*
+ Location Row Color
+*/
+
+#location_table tr.odd{
+ 
+    background-color: #3366FF;
+}
+#location_table tr.even{
+    background-color: #8080FF;
+    
+}
+
+#guestbook_table tr.odd{
+    background-color: #8080FF;
+}
+#guestbook_table tr.even{
+    background-color: #99B3FF;
 }
 
 
