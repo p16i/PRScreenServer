@@ -7,9 +7,7 @@
 $(document).ready(function(){
     var base_url = 'http://localhost/PRScreenServer/' ;
     
-    $("#add_about_fac_link").click(function(e){
-        var scroll = $(this).offset().top;
-        
+    $("#add_about_fac_link").click(function(e){   
         $( "#add_about_fac" ).dialog({
             modal:true,
             width:500,
@@ -41,6 +39,13 @@ $(document).ready(function(){
       
         return false;
     });
+    
+
+    
+    
+    
+    
+    //// Prevent Submit form when press Enter (keycode=13)
     $("input").keypress(function(e){
         if(e.keyCode== '13'){
             return false ;

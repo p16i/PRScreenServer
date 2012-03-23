@@ -5,15 +5,121 @@
 
 $(document).ready(function(){
     var base_url = 'http://localhost/PRScreenServer/' ;
-    $('#news_table').dataTable({ });
-    $('#marqueetext_table').dataTable({ });
-    $('#location_table').dataTable({});
-    $('#guestbook_table').dataTable({});
-    $('#gallery_table').dataTable(
-    {
-        "iDisplayLength": 5,
-        "aLengthMenu": [[5], [5]]
+    
+    
+    
+    
+   
+    
+    
+    
+    /// Fetch Gallery
+    $('#gallery_table').dataTable({
+              "bProcessing": false,
+        "bServerSide": false,
+        "iDisplayLength": 8,
+        "aLengthMenu": [[8], [8]],
+        "sAjaxSource": base_url+"admin/gallery/list_gallery",
+        'fnServerData': function(sSource, aoData, fnCallback) {
+            $.ajax
+            ({
+                'dataType': 'json',
+                'type'    : 'POST',
+                'url'     : sSource,
+                'data'    : aoData,
+                'success' : fnCallback
+            }); // End Ajax
+        }
+        
+        
+        
     });
+    
+    
+    /// Fetch Location 
+     
+    $('#location_table').dataTable({
+         "bProcessing": false,
+        "bServerSide": false,
+        "iDisplayLength": 10,
+        "aLengthMenu": [[10], [10]],
+        "sAjaxSource": base_url+"admin/location/list_location",
+        'fnServerData': function(sSource, aoData, fnCallback) {
+            $.ajax
+            ({
+                'dataType': 'json',
+                'type'    : 'POST',
+                'url'     : sSource,
+                'data'    : aoData,
+                'success' : fnCallback
+            }); // End Ajax
+        }
+        
+    });
+    
+    
+    /// Fetch Marquee Text
+    $('#marqueetext_table').dataTable({ 
+        "bProcessing": false,
+        "bServerSide": false,
+        "iDisplayLength": 10,
+        "aLengthMenu": [[10], [10]],
+        "sAjaxSource": base_url+"admin/marqueetext/list_marqueetext",
+        'fnServerData': function(sSource, aoData, fnCallback) {
+            $.ajax
+            ({
+                'dataType': 'json',
+                'type'    : 'POST',
+                'url'     : sSource,
+                'data'    : aoData,
+                'success' : fnCallback
+            }); // End Ajax
+        }
+    });
+    
+    
+    /// Fetch News
+    $('#news_table').dataTable({ 
+        "bProcessing": false,
+        "bServerSide": false,
+        "iDisplayLength": 10,
+        "aLengthMenu": [[10], [10]],
+        "sAjaxSource": base_url+"admin/news/list_news",
+        'fnServerData': function(sSource, aoData, fnCallback) {
+            $.ajax
+            ({
+                'dataType': 'json',
+                'type'    : 'POST',
+                'url'     : sSource,
+                'data'    : aoData,
+                'success' : fnCallback
+            }); // End Ajax
+        }
+    });
+    
+    
+    /// Fetch Guestbook
+    $('#guestbook_table').dataTable(
+    {
+        "bProcessing": false,
+        "bServerSide": false,
+        "iDisplayLength": 10,
+        "aLengthMenu": [[10], [10]],
+        "sAjaxSource": base_url+"admin/guestbook/list_guestbook",
+        'fnServerData': function(sSource, aoData, fnCallback) {
+            $.ajax
+            ({
+                'dataType': 'json',
+                'type'    : 'POST',
+                'url'     : sSource,
+                'data'    : aoData,
+                'success' : fnCallback
+            }); // End Ajax
+        }
+    });
+    
+    
+    /// Fecth Guestbook
     $('#aboutfac_table').dataTable(
     {
         "bProcessing": false,

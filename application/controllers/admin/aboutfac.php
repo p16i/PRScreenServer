@@ -21,7 +21,6 @@ Class aboutfac extends CI_Controller {
         $this->datatables->from('aboutfac');
 
 
-        $base_url = base_url() ; 
 //        //  $test = $this->products_model->query_page(5);
       $this->datatables->edit_column('path','<img src="resources/about_fac/$1" class="thumbnail" />', 'path');
       $this->datatables->edit_column('id', 'Edit | Delete', 'id');

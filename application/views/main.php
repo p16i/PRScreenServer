@@ -111,6 +111,7 @@
                 <div class="page" id="guestbook_page">
                     <div class="header_1">
                         Manage Guestbook Content
+            
                     </div>
                     <?php $this->load->view('guestbook/guestbook_table') ?>
                 </div>

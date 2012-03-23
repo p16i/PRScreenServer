@@ -13,11 +13,7 @@ class Guestbook_Model extends CI_Model{
         return $query->first_row();
     }
     
-    function get_guestbook_by_id($id){
-        $query = $this->db->query('SELECT * FROM guestbook 
-                                   WHERE id>'.$id);
-        return $query->result();
-    }
+  
     
     function insert($row){
         $this->db->query('INSERT INTO guestbook 
