@@ -36,7 +36,7 @@
 
         <div class="wrapper">
             <div style="text-align: right ;">
-                <form action="<?php echo base_url();?>login">
+                <form action="<?php echo base_url();?>welcome" method="POST">
                     <input type="text" value="" placeholder="username" class="input"/>
                      <input type="password" value="" placeholder="password" class="input"/>
                      <input type="submit" value="login" />
