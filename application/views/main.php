@@ -5,7 +5,9 @@
         <title>PR Screen Management System</title>
         <?php $this->load->view('header'); ?>
         <script src="<?php echo base_url(); ?>js/fetchDataFromDataTable.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>js/addResouce.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url(); ?>styles/dataTable.css" />
+        <script type="text/javascript"></script>
     </head>
     <body>
 
@@ -16,12 +18,10 @@
                     <div id="login_form">
                         Hi,Pattarawat <a href="#"><img src="<?php echo base_url(); ?>styles/images/icons/logout.png" width="20" height="20" style="vertical-align: bottom;"/> </a>
                     </div>
-                    <div class="header_1">
-                        Management
-                    </div>
+                
                     <div>
                         <ul id="menu">
-                                <li class="menu">
+                            <li class="menu">
                                 <a href="#" class="billboard_link">
                                     <img src="<?php echo base_url(); ?>styles/images/Menu/Billboard.png" class="menu_icon"/>
                                     <div class="menu_description">
@@ -82,43 +82,51 @@
                     <div class="header_1">
                         Manage Billboard Content
                     </div>
-                    
+
                 </div>
                 <div class="page" id="gallery_page">
                     <div class="header_1">
                         Manage Gallery Content
                     </div>
-                      <?php $this->load->view('gallery/gallery_table')?>
+                    <?php $this->load->view('gallery/gallery_table') ?>
                 </div>
                 <div class="page" id="marquee_page">
                     <div class="header_1">
                         Manage Marquee Text
                     </div>
-                      <?php $this->load->view('marqueetext/marqueetext_table')?>
+                    <?php $this->load->view('marqueetext/marqueetext_table') ?>
                 </div>
                 <div class="page" id="news_page">
                     <div class="header_1">
                         Manage News Content
                     </div>
-                      <?php $this->load->view('news/news_table')?>
+                    <?php $this->load->view('news/news_table') ?>
                 </div>
                 <div class="page" id="location_page">
                     <div class="header_1">
                         Manage Location Content
                     </div>
-                    <?php $this->load->view('location/location_table')?>
+                    <?php $this->load->view('location/location_table') ?>
                 </div>
                 <div class="page" id="guestbook_page">
                     <div class="header_1">
                         Manage Guestbook Content
                     </div>
-                    <?php $this->load->view('guestbook/guestbook_table')?>
+                    <?php $this->load->view('guestbook/guestbook_table') ?>
                 </div>
 
                 <div class="page" id="about_fac_page">
                     <div class="header_1">
-                        Manage About Faculty Content
+                        Manage About Faculty Content 
+                        <a href="#" id="add_about_fac_link">
+                        <img src="<?php echo base_url();?>/styles/images/add-icon.png" class="add_icon"/>    
+                        </a>
                     </div>
+                    
+                    <?php
+                    $this->load->view('aboutfac/aboutfac_table');
+                    
+                    ?>
                 </div>
             </div>
 
@@ -164,8 +172,11 @@
 
 
     </div>
+
 </div>
+
 <?php
+$this->load->view('aboutfac/add_aboutfac');
 $this->load->view('footer');
 ?>
 </body>

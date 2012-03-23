@@ -248,7 +248,14 @@ tr.even {
     background-color: #99B3FF;
 }
 
+#aboutfac_table tr.odd{
+      background-color: #99B3FF;
+}
 
+#aboutfac_table tr.even{
+       
+       background-color: #CCCCFF;
+}
 
 
 

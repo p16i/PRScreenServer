@@ -1,6 +1,7 @@
 $(document).ready(function(){
     // Your code here
     $(".news_page_link").click(function(e){
+        
         scrollToPage("#news_page");
         e.preventDefault();
     });

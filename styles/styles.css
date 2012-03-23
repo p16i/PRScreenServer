@@ -42,7 +42,9 @@ html, body {
     margin-left: 100px;
     margin-top: 50px;
     margin-bottom: 150px;
-  
+
+    text-shadow: 0px 0px 8px #ffffff;
+
 }
 .wrapper {
     min-height: 100%;
@@ -69,16 +71,17 @@ html, body {
     padding : 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    width: 100%;
 }
 #login_form{
     padding: 10px;
     text-align: right;
     font-size: 0.8em;
     margin-bottom: 50px;
-   
+
 }
 #menu{
-   margin-top:500px;
+    margin-top:500px;
 }
 .menu_icon{
     -moz-box-shadow: 0px 0px 8px #ffffff;
@@ -92,6 +95,7 @@ html, body {
     text-align: center;
     margin-top: 5px;
     text-decoration: none;
+     text-shadow: 0px 0px 10px #ffffff;
 }
 .menu{
     display: inline-block;
@@ -110,10 +114,10 @@ html, body {
 }
 .page{
     height: 900px;
-/*    border: solid darkblue;*/
+    /*    border: solid darkblue;*/
 }
 .pages{
-    
+
     margin-top: 100px;
 }
 #small_menu_panel{
@@ -126,4 +130,16 @@ html, body {
     display: inline-block;
     margin-right: 5px;
 
+}
+.dialog{
+    display: none;
+    font-size: small;
+    overflow: hidden;
+}
+.thumbnail{
+    width: 90px;
+    height: 60px;
+}
+.add_icon{
+    vertical-align: middle;
 }
