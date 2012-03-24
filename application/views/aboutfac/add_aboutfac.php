@@ -6,5 +6,4 @@
         <input type="text" name="path" id="path" placeholder="image1.png" class="input"></input>
         
     </form>
-    
 </div>

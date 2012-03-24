@@ -32,14 +32,8 @@ class News_Model extends CI_Model{
         return $query->first_row();
     }
     
-    function insert($row){
-        $this->db->query('INSERT INTO news 
-                          VALUES    (null,
-                                    "'.$row['headline'].'",
-                                    "'.$row['content'].'",
-                                    "'.$row['datetime'].'", 
-                                    "'.$row['catagoryID'].'")'
-                        );
+    function insert($data){
+        $this->db->insert('news',$data);
     }
     
     function get_last_id(){

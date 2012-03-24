@@ -35,7 +35,7 @@ Class location extends CI_Controller {
 
     function add_location() {//$_POST => roomname, catagoryID :: upload file => image
         if ($_POST['roomname'] != '') {
-            $config['upload_path'] = './image_location/';
+            $config['upload_path'] = 'resources/location/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '0';
             $config['max_width'] = '0';
@@ -44,18 +44,20 @@ Class location extends CI_Controller {
             $this->load->library('upload', $config);
             $this->upload->do_upload('image');
 
-            //print_r($this->upload->data());
+           // print_r($this->upload->data());
             $image_data = $this->upload->data();
             if ($image_data['file_name'] != null) {
                 //echo '<br><br>'.$_POST['content'].'<br><br>';
                 $_POST['imagepath'] = $image_data['file_name'];
                 $this->Location_Model->insert($_POST);
                 $_POST['option'] = null;
-                $this->index();
-            }else
+                //$this->index();
+                redirect(base_url().'welcome#location_page', 'refresh');
+            } else {
                 echo "image isn't upload";
-        }
-        else {
+               // print_r($this->upload->display_errors());
+            }
+        } else {
             echo 'roomname is empty';
         }
     }
@@ -94,9 +96,10 @@ Class location extends CI_Controller {
     }
 
     function list_location() {
-        $this->datatables->select('roomname,hitcounter, name,id');
+        $this->datatables->select('imagepath,roomname,hitcounter, name,id');
         $this->datatables->from('location');
-       $this->db->join('location_catagory', 'location_catagory.catagoryid = location.catagoryid');
+        $this->db->join('location_catagory', 'location_catagory.catagoryid = location.catagoryid');
+        $this->datatables->edit_column('imagepath', '<img src="resources/location/$1" class="thumbnail"/>', 'imagepath');
         $this->datatables->edit_column('id', 'Edit | Delete', 'id');
         $json = $this->datatables->generate('UTF8');
         //  print_r($json);

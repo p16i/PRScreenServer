@@ -12,14 +12,8 @@ class MarqueeText_Model extends CI_Model{
         return $query->result();
     }
     
-    function insert($row){
-        $this->db->query('INSERT INTO marqueetext 
-                          VALUES    (null,
-                                    "'.$row['content'].'",
-                                    "'.$row['datetime'].'",   
-                                    '.$row['isEnable'].',
-                                    '.$row['newsID'].')'
-                        );
+    function insert($data){
+        $this->db->insert('marqueetext',$data);
     }
     
     function set_enable($allid){

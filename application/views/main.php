@@ -18,7 +18,7 @@
                     <div id="login_form">
                         Hi,Pattarawat <a href="#"><img src="<?php echo base_url(); ?>styles/images/icons/logout.png" width="20" height="20" style="vertical-align: bottom;"/> </a>
                     </div>
-                
+
                     <div>
                         <ul id="menu">
                             <li class="menu">
@@ -81,8 +81,11 @@
                 <div class="page" id="billboard_page">
                     <div class="header_1">
                         Manage Billboard Content
+                        <a href="#" id="add_billboard_link">
+                            <img src="<?php echo base_url(); ?>/styles/images/add-icon.png" class="add_icon"/>    
+                        </a>
                     </div>
-
+                    <?php $this->load->view('billboard/billboard_table') ?>
                 </div>
                 <div class="page" id="gallery_page">
                     <div class="header_1">
@@ -93,25 +96,34 @@
                 <div class="page" id="marquee_page">
                     <div class="header_1">
                         Manage Marquee Text
+                        <a href="#" id="add_marquee_link">
+                            <img src="<?php echo base_url(); ?>/styles/images/add-icon.png" class="add_icon"/>    
+                        </a>
                     </div>
                     <?php $this->load->view('marqueetext/marqueetext_table') ?>
                 </div>
                 <div class="page" id="news_page">
                     <div class="header_1">
                         Manage News Content
+                        <a href="#" id="add_news_link">
+                            <img src="<?php echo base_url(); ?>/styles/images/add-icon.png" class="add_icon"/>    
+                        </a>
                     </div>
                     <?php $this->load->view('news/news_table') ?>
                 </div>
                 <div class="page" id="location_page">
                     <div class="header_1">
                         Manage Location Content
+                        <a href="#" id="add_location_link">
+                            <img src="<?php echo base_url(); ?>/styles/images/add-icon.png" class="add_icon"/>    
+                        </a>
                     </div>
                     <?php $this->load->view('location/location_table') ?>
                 </div>
                 <div class="page" id="guestbook_page">
                     <div class="header_1">
                         Manage Guestbook Content
-            
+
                     </div>
                     <?php $this->load->view('guestbook/guestbook_table') ?>
                 </div>
@@ -120,13 +132,12 @@
                     <div class="header_1">
                         Manage About Faculty Content 
                         <a href="#" id="add_about_fac_link">
-                        <img src="<?php echo base_url();?>/styles/images/add-icon.png" class="add_icon"/>    
+                            <img src="<?php echo base_url(); ?>/styles/images/add-icon.png" class="add_icon"/>    
                         </a>
                     </div>
-                    
+
                     <?php
                     $this->load->view('aboutfac/aboutfac_table');
-                    
                     ?>
                 </div>
             </div>
@@ -177,7 +188,11 @@
 </div>
 
 <?php
+$this->load->view('billboard/add_billboard');
+$this->load->view('news/add_news');
+$this->load->view('location/add_location');
 $this->load->view('aboutfac/add_aboutfac');
+$this->load->view('marqueetext/add_marqueetext');
 $this->load->view('footer');
 ?>
 </body>

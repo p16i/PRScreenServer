@@ -61,7 +61,7 @@ html, body {
     height: 300px;
 }
 .belowFooter{
-    height: 200px;
+    height: 100px;
     text-align: center;
     background : #00ff00;
 }
@@ -95,7 +95,7 @@ html, body {
     text-align: center;
     margin-top: 5px;
     text-decoration: none;
-     text-shadow: 0px 0px 10px #ffffff;
+    text-shadow: 0px 0px 10px #ffffff;
 }
 .menu{
     display: inline-block;
@@ -142,4 +142,14 @@ html, body {
 }
 .add_icon{
     vertical-align: middle;
+}
+#text_footer{
+   
+    float: left;
+  
+}
+.bottom_menu{
+    display: inline;
+    margin-right: 10px;
+
 }

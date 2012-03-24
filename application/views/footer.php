@@ -8,6 +8,14 @@
 <div class="footer">
 
 </div>
+
 <div class="belowFooter">
-    &#169; IT@KMITL กหดฟาหกดวฟาห่กดสวาฟ่กดวสฟาห่กดวสฟาหก่ดวสาฟหดก
+   
+    <img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-performance.png" style="float:right ;margin-right: 10px"/>
+     
+    <ul id="text_footer">
+        <li class="bottom_menu">About</li>
+         <li class="bottom_menu">About</li>
+    </ul>
+
 </div>

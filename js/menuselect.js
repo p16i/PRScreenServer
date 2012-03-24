@@ -42,7 +42,7 @@ $(document).ready(function(){
     $(window).scroll(function () { 
           
         var x_scroll = $(window).scrollTop(); 
-        if(x_scroll<900){
+        if(x_scroll<900 || x_scroll>6400){
             $("#small_menu_panel").fadeOut();            
         }else{
             $("#small_menu_panel").fadeIn();

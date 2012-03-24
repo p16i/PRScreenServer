@@ -33,19 +33,25 @@ Class news extends CI_Controller {
 
     function add_news() { //$_POST => headline, content, datetime, catagoryID
         //echo "TEST".$_POST['datetime'];
-        $_POST['datetime'] = mdate('%Y-%m-%d %H:%i:%s', time());
+        $_POST['_datetime'] = mdate('%Y-%m-%d %H:%i:%s', time());
         if ($_POST['headline'] != '' && $_POST['content'] != '') {
+
+
+            $data = array();
+            $data['_datetime'] = $_POST['_datetime'];
+            $data['headline'] = $_POST['headline'];
+            $data['content'] = $_POST['content'];
+            $data['catagoryid'] = $_POST['catagoryID'];
+            $this->News_Model->insert($data);
             if (isset($_POST['marquee'])) { //if admin want to bind the news to marquee
                 //echo '<br>ABCDASDAWEDAWD<br>';
-                $marquee['content'] = $_POST['headline'];
-                $marquee['datetime'] = $_POST['datetime'];
+                $marquee = array();
+                $marquee['Content'] = $_POST['headline'];
+                $marquee['_datetime'] = $_POST['_datetime'];
                 $marquee['isEnable'] = TRUE;
-                $marquee['newsID'] = $this->News_Model->get_last_id() + 1;
+                $marquee['news_id'] = $this->News_Model->get_last_id();
+                $this->MarqueeText_Model->insert($marquee);
             }
-            $this->News_Model->insert($_POST);
-            $this->MarqueeText_Model->insert($marquee);
-            $_POST['option'] = null;
-            $this->index();
         }else
             echo 'Something Empty'; //blank input detect.
     }
@@ -74,8 +80,6 @@ Class news extends CI_Controller {
     function list_news() {
         $this->datatables->select('_datetime,headline, content, catagoryid,id');
         $this->datatables->from('news');
-
-
         $this->datatables->edit_column('id', 'Edit | Delete', 'id');
         $json = $this->datatables->generate('UTF8');
         //  print_r($json);

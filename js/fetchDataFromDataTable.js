@@ -9,14 +9,34 @@ $(document).ready(function(){
     
     
     
-   
-    
+   /// Fetch Billboard
+     $('#billboard_table').dataTable({
+           "aaSorting": [[1,'desc']],
+              "bProcessing": false,
+        "bServerSide": true,
+        "iDisplayLength": 5,
+        "aLengthMenu": [[5], [5]],
+        "sAjaxSource": base_url+"admin/billboard/list_billboard",
+        'fnServerData': function(sSource, aoData, fnCallback) {
+            $.ajax
+            ({
+                'dataType': 'json',
+                'type'    : 'POST',
+                'url'     : sSource,
+                'data'    : aoData,
+                'success' : fnCallback
+            }); // End Ajax
+        }
+        
+        
+        
+    });
     
     
     /// Fetch Gallery
     $('#gallery_table').dataTable({
               "bProcessing": false,
-        "bServerSide": false,
+        "bServerSide": true,
         "iDisplayLength": 8,
         "aLengthMenu": [[8], [8]],
         "sAjaxSource": base_url+"admin/gallery/list_gallery",
@@ -40,9 +60,9 @@ $(document).ready(function(){
      
     $('#location_table').dataTable({
          "bProcessing": false,
-        "bServerSide": false,
-        "iDisplayLength": 10,
-        "aLengthMenu": [[10], [10]],
+        "bServerSide": true,
+        "iDisplayLength": 5,
+        "aLengthMenu": [[5], [5]],
         "sAjaxSource": base_url+"admin/location/list_location",
         'fnServerData': function(sSource, aoData, fnCallback) {
             $.ajax
@@ -60,8 +80,9 @@ $(document).ready(function(){
     
     /// Fetch Marquee Text
     $('#marqueetext_table').dataTable({ 
+          "aaSorting": [[0,'desc']],
         "bProcessing": false,
-        "bServerSide": false,
+        "bServerSide": true,
         "iDisplayLength": 10,
         "aLengthMenu": [[10], [10]],
         "sAjaxSource": base_url+"admin/marqueetext/list_marqueetext",
@@ -80,8 +101,9 @@ $(document).ready(function(){
     
     /// Fetch News
     $('#news_table').dataTable({ 
+         "aaSorting": [[0,'desc']],
         "bProcessing": false,
-        "bServerSide": false,
+        "bServerSide": true,
         "iDisplayLength": 10,
         "aLengthMenu": [[10], [10]],
         "sAjaxSource": base_url+"admin/news/list_news",
@@ -101,8 +123,9 @@ $(document).ready(function(){
     /// Fetch Guestbook
     $('#guestbook_table').dataTable(
     {
+          "aaSorting": [[0,'desc']],
         "bProcessing": false,
-        "bServerSide": false,
+        "bServerSide": true,
         "iDisplayLength": 10,
         "aLengthMenu": [[10], [10]],
         "sAjaxSource": base_url+"admin/guestbook/list_guestbook",

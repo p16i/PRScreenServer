@@ -31,24 +31,28 @@ Class marqueetext extends CI_Controller {
     }
 
     function add_marqueetext() {
-        $_POST['datetime'] = mdate('%Y-%m-%d %H:%i:%s', time());
-        $marquee['isEnable'] = TRUE;
-        if ('' == '') { // Manual Add{ //$_POST => content, newsID
-            if ($_POST['content'] != '') {
-
-                $marquee['newsID'] = 'NULL';
-                $this->MarqueeText_Model->insert($_POST);
-            }
-        } elseif ('' == '') {// Choose from news  ////$_POST => content, newsID
-            if (isset($_POST) && $_POST['content'] != '') {
-                $this->MarqueeText_Model->insert($_POST);
-            }
-        }
-
-        else
-            echo 'Something Empty'; //blank input detect.
-        $_POST['option'] = null;
-        $this->index();
+        $_POST['_datetime'] = mdate('%Y-%m-%d %H:%i:%s', time());
+        $_POST['isEnable'] = TRUE;
+        
+        //// Tle's Code 
+        $this->MarqueeText_Model->insert($_POST);
+        
+//        if ('' == '') { // Manual Add{ //$_POST => content, newsID
+//            if ($_POST['content'] != '') {
+//
+//                $marquee['newsID'] = 'NULL';
+//                $this->MarqueeText_Model->insert($_POST);
+//            }
+//        } elseif ('' == '') {// Choose from news  ////$_POST => content, newsID
+//            if (isset($_POST) && $_POST['content'] != '') {
+//                $this->MarqueeText_Model->insert($_POST);
+//            }
+//        }
+//
+//        else
+//            echo 'Something Empty'; //blank input detect.
+//        $_POST['option'] = null;
+       // $this->index();
     }
 
     function delete_marqueetext($id) {
@@ -63,7 +67,7 @@ Class marqueetext extends CI_Controller {
     }
 
     function list_marqueetext() {
-        $this->datatables->select('_datetime,content, isEnable,id');
+        $this->datatables->select('_datetime,content, isEnable,news_id,id');
         $this->datatables->from('marqueetext');
         $this->datatables->edit_column('isEnable','$1','isEnable');
         $this->datatables->edit_column('id', 'Edit | Delete', 'id');

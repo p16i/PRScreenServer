@@ -3,6 +3,7 @@
 <table cellpadding="0" cellspacing="0" border="0" class="display dataTable" id="location_table"  aria-describedby="example_info" >
     <thead>
         <tr role="row">
+            <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 179px; " >#</th>
             <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 128px; " aria-sort="ascending" >Roomname</th>
             <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 179px; " >Hitcounter</th>
             <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 171px; " >Catagory</th>
@@ -15,7 +16,7 @@
 
     <tfoot>
         <tr>
-            
+             <th rowspan="1" colspan="1">#</th>
             <th rowspan="1" colspan="1">Roomname</th>
             <th rowspan="1" colspan="1">Hitcounter</th>
             <th rowspan="1" colspan="1">Catagory</th>
