@@ -10,25 +10,25 @@ Class marqueetext extends CI_Controller {
         $this->load->model('News_Model');
     }
 
-    function index() {
-        if (!isset($_POST['option'])) {
-            $result = $this->MarqueeText_Model->get_marqueetext();
-            $data['result'] = $result;
-            $this->load->view("marqueetext/index", $data);
-        } elseif ($_POST['option'] == 'Add MarqueeText') {
-            $result = $this->News_Model->get_news();
-            $data['result'] = $result;
-            $this->load->view('marqueetext/add_marqueetext', $data);
-        } elseif ($_POST['option'] == 'Edit Selected') {//$_POST => id
-            $marqueeText_result = $this->News_Model->get_news_by_id($_POST['id']);
-            $news_result = $this->News_Catagory_Model->get_news_catagory();
-            $data['marqueetext_result'] = $marqueeText_result;
-            $data['news_result'] = $news_result;
-            $this->load->view('marqueetext/edit_marqueetext', $data); //send all old data to represent to the admin
-        } elseif ($_POST['option'] == 'Delete') {
-            $this->delete_marqueetext($_POST['id']);
-        }
-    }
+//    function index() {
+//        if (!isset($_POST['option'])) {
+//            $result = $this->MarqueeText_Model->get_marqueetext();
+//            $data['result'] = $result;
+//            $this->load->view("marqueetext/index", $data);
+//        } elseif ($_POST['option'] == 'Add MarqueeText') {
+//            $result = $this->News_Model->get_news();
+//            $data['result'] = $result;
+//            $this->load->view('marqueetext/add_marqueetext', $data);
+//        } elseif ($_POST['option'] == 'Edit Selected') {//$_POST => id
+//            $marqueeText_result = $this->News_Model->get_news_by_id($_POST['id']);
+//            $news_result = $this->News_Catagory_Model->get_news_catagory();
+//            $data['marqueetext_result'] = $marqueeText_result;
+//            $data['news_result'] = $news_result;
+//            $this->load->view('marqueetext/edit_marqueetext', $data); //send all old data to represent to the admin
+//        } elseif ($_POST['option'] == 'Delete') {
+//            $this->delete_marqueetext($_POST['id']);
+//        }
+//    }
 
     function add_marqueetext() {
         $_POST['_datetime'] = mdate('%Y-%m-%d %H:%i:%s', time());

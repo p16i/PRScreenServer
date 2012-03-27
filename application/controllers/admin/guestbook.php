@@ -9,17 +9,17 @@ Class guestbook extends CI_Controller {
         $this->load->model("Guestbook_Model");
     }
 
-    function index() {
-        if (!isset($_POST['option'])) {
-            $result = $this->Guestbook_Model->get_guestbook();
-            $data['result'] = $result;
-            $this->load->view("guestbook/index", $data);
-        } elseif ($_POST['option'] == 'Add') {
-            
-        } elseif ($_POST['option'] == 'Delete') { //$_POST => id
-            $this->delete_guestbook($_POST['id']);
-        }
-    }
+//    function index() {
+//        if (!isset($_POST['option'])) {
+//            $result = $this->Guestbook_Model->get_guestbook();
+//            $data['result'] = $result;
+//            $this->load->view("guestbook/index", $data);
+//        } elseif ($_POST['option'] == 'Add') {
+//            
+//        } elseif ($_POST['option'] == 'Delete') { //$_POST => id
+//            $this->delete_guestbook($_POST['id']);
+//        }
+//    }
 
     function add_guestbook() {//$_POST => content, soundPath, imagePath, datetime
         ////////////////////////////////////////
