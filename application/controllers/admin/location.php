@@ -10,29 +10,6 @@ Class location extends CI_Controller {
         $this->load->model('Location_Catagory_Model');
     }
 
-    function index() {
-        if (!isset($_POST['option'])) {
-            $result = $this->Location_Model->get_location();
-            //$result = $this->Location_Catagory_Model->get_location_catogory();
-            $data['result'] = $result;
-            $this->load->view("location/index", $data);
-        } elseif ($_POST['option'] == 'Add Location') {
-            $result = $this->Location_Catagory_Model->get_location_catagory();
-            $data['result'] = $result;
-
-            $this->load->view('location/add_location', $data);
-        } elseif ($_POST['option'] == 'Edit Selected') {//$_POST => id
-            $location_result = $this->Location_Model->get_location_by_id($_POST['id']);
-            $catagory_result = $this->Location_Catagory_Model->get_news_catagory();
-            $data['location_result'] = $location_result;
-            $data['catagory_result'] = $catagory_result;
-            $this->load->view('location/edit_location', $data); //send all old data to represent to the admin
-            // $this->edit_location();
-        } elseif ($_POST['option'] == 'Delete') { //$_POST => id
-            $this->delete_location($_POST['id']);
-        }
-    }
-
     function add_location() {//$_POST => roomname, catagoryID :: upload file => image
         if ($_POST['roomname'] != '') {
             $config['upload_path'] = 'resources/location/';

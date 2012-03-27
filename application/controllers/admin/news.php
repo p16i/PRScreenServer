@@ -10,26 +10,26 @@ Class news extends CI_Controller {
         $this->load->model('News_Catagory_Model');
         $this->load->model('MarqueeText_Model');
     }
-
-    function index() {
-        if (!isset($_POST['option'])) {
-            $result = $this->News_Model->get_news();
-            $data['result'] = $result;
-            $this->load->view("news/index", $data);
-        } elseif ($_POST['option'] == 'Add News') {
-            $result = $this->News_Catagory_Model->get_news_catagory();
-            $data['result'] = $result;
-            $this->load->view('news/add_news', $data);
-        } elseif ($_POST['option'] == 'Edit Selected') {//$_POST => id
-            $news_result = $this->News_Model->get_news_by_id($_POST['id']);
-            $catagory_result = $this->News_Catagory_Model->get_news_catagory();
-            $data['news_result'] = $news_result;
-            $data['catagory_result'] = $catagory_result;
-            $this->load->view('news/edit_news', $data); //send all old data to represent to the admin
-        } elseif ($_POST['option'] == 'Delete') {
-            $this->delete_news($_POST['id']);
-        }
-    }
+//
+//    function index() {
+//        if (!isset($_POST['option'])) {
+//            $result = $this->News_Model->get_news();
+//            $data['result'] = $result;
+//            $this->load->view("news/index", $data);
+//        } elseif ($_POST['option'] == 'Add News') {
+//            $result = $this->News_Catagory_Model->get_news_catagory();
+//            $data['result'] = $result;
+//            $this->load->view('news/add_news', $data);
+//        } elseif ($_POST['option'] == 'Edit Selected') {//$_POST => id
+//            $news_result = $this->News_Model->get_news_by_id($_POST['id']);
+//            $catagory_result = $this->News_Catagory_Model->get_news_catagory();
+//            $data['news_result'] = $news_result;
+//            $data['catagory_result'] = $catagory_result;
+//            $this->load->view('news/edit_news', $data); //send all old data to represent to the admin
+//        } elseif ($_POST['option'] == 'Delete') {
+//            $this->delete_news($_POST['id']);
+//        }
+//    }
 
     function add_news() { //$_POST => headline, content, datetime, catagoryID
         //echo "TEST".$_POST['datetime'];
