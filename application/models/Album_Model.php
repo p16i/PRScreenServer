@@ -89,6 +89,11 @@ class Album_Model extends CI_Model{
         return $result;
     }
     
+    function edit($row){
+        $this->db->where('id',$row['id']);
+        $this->db->update('album',$row);
+    }
+    
     
 }
 

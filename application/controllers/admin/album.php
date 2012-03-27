@@ -74,12 +74,12 @@
             }else{
                 echo 'Album Name is empty';
             }
-            redirect(base_url().'index.php/admin/album/');
+            //redirect(base_url().'index.php/admin/album/');
             //$this->index();
         }
         
         function add_file(){// อันนี้ไม่เกี่ยว ใช้ในคลาสนี้เอง
-            $path = './image_album/'.$_POST['name'];
+            $path = 'resources/album/'.$_POST['name'];
             mkdir($path);
             $config['upload_path'] = $path.'/';
             $config['allowed_types'] = 'gif|jpg|png';
@@ -99,38 +99,37 @@
                 $this->upload->do_upload('image');
             }
         }
-//    
-//        
-//        function delete_album($id){//$_POST => id
-//            echo 'AAA : '.$id;
-//            if($id!='' && $id!=null){
-//                $row = $this->Album_Model->get_album_by_id($id);
-//                $path = './image_album/'.$row->Name;
-//
-//                delete_files($path,TRUE);
-//                rmdir($path);
-//
-//                $this->Album_Model->delete($id);
-//
-//            }
-//            
-//            redirect(base_url().'index.php/admin/album/');
-//        }
-//        
-//        function edit_album(){//$_POST => name, catagoryID
-//            //echo $_POST['id'];
-//            
-//            
-//            $rename = rename('./image_album/AlbumTest', './image_album/AlbumTest');
-//            $row = $this->Album_Model->get_album_by_id($_POST['id']);
-//            rename('./image_album/'.$row->Name, './image_album/'.$_POST['name']);
-//            
-//            
-//            $this->Album_Model->edit($_POST);
-//
-//            
-//            redirect(base_url().'index.php/admin/album/');
-//        }
+    
+        
+        function delete_album($id){//$_POST => id
+            echo 'AAA : '.$id;
+            if($id!='' && $id!=null){
+                $row = $this->Album_Model->get_album_by_id($id);
+                $path = 'resources/album/'.$row->Name;
+
+                delete_files($path,TRUE);
+                rmdir($path);
+
+                $this->Album_Model->delete($id);
+
+            }
+            
+            //redirect(base_url().'index.php/admin/album/');
+        }
+        
+        function edit_album_name(){//$_POST => id ,name
+            //echo $_POST['id'];
+            
+            //rename('./image_album/AlbumTest', './image_album/AlbumTest');
+            $row = $this->Album_Model->get_album_by_id($_POST['id']);
+            rename('resources/album/'.$row->Name, 'resources/album/'.$_POST['name']);
+            
+            
+            $this->Album_Model->edit($_POST);
+
+            
+            //redirect(base_url().'index.php/admin/album/');
+        }
 
     }
 ?>
