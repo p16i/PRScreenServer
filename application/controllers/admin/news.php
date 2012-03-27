@@ -56,26 +56,26 @@ Class news extends CI_Controller {
             echo 'Something Empty'; //blank input detect.
     }
 
-    function delete_news($id) {//$_POST => id
-        $this->News_Model->delete($id);
-        $_POST['option'] = null;
-        $this->index();
-    }
-
-    function edit_news() {//$_POST => id, content, headline, catagoryID
-        //echo $_POST['id'];
-        $this->News_Model->edit($_POST);
-
-        if ($_POST['headline'] != '' && $_POST['content'] != '') {
-            //change content of marquee in case of news headline have change
-            $marquee['newsID'] = $_POST['id'];
-            $marquee['content'] = $_POST['headline'];
-
-            $this->MarqueeText_Model->edit($marquee);
-            $this->index();
-        }else
-            echo 'Something Empty';
-    }
+//    function delete_news($id) {//$_POST => id
+//        $this->News_Model->delete($id);
+//        $_POST['option'] = null;
+//        $this->index();
+//    }
+//
+//    function edit_news() {//$_POST => id, content, headline, catagoryID
+//        //echo $_POST['id'];
+//        $this->News_Model->edit($_POST);
+//
+//        if ($_POST['headline'] != '' && $_POST['content'] != '') {
+//            //change content of marquee in case of news headline have change
+//            $marquee['newsID'] = $_POST['id'];
+//            $marquee['content'] = $_POST['headline'];
+//
+//            $this->MarqueeText_Model->edit($marquee);
+//            $this->index();
+//        }else
+//            echo 'Something Empty';
+//    }
 
     function list_news() {
         $this->datatables->select('_datetime,headline, content, catagoryid,id');

@@ -10,24 +10,24 @@ Class billboard extends CI_Controller {
         $this->load->model('News_Model');
     }
 
-    function index() {
-
-        if (!isset($_POST['option'])) {
-            $result = $this->Billboard_Model->get_billboard();
-            $data['result'] = $result;
-            $this->load->view("billboard/index", $data);
-        } elseif ($_POST['option'] == 'Add Billboard') {
-            $result = $this->News_Model->get_news();
-            $data['result'] = $result;
-            $this->load->view('billboard/add_billboard', $data);
-        } elseif ($_POST['option'] == 'Edit Selected') {
-            $row = $this->Billboard_Model->get_billboard_by_id($_POST['id']);
-            $this->load->view('billboard/edit_billboard', $data);
-            //$this->edit_billboard();
-        } elseif ($_POST['option'] == 'Delete') {
-            $this->delete_billboard($_POST['id']);
-        }
-    }
+//    function index() {
+//
+//        if (!isset($_POST['option'])) {
+//            $result = $this->Billboard_Model->get_billboard();
+//            $data['result'] = $result;
+//            $this->load->view("billboard/index", $data);
+//        } elseif ($_POST['option'] == 'Add Billboard') {
+//            $result = $this->News_Model->get_news();
+//            $data['result'] = $result;
+//            $this->load->view('billboard/add_billboard', $data);
+//        } elseif ($_POST['option'] == 'Edit Selected') {
+//            $row = $this->Billboard_Model->get_billboard_by_id($_POST['id']);
+//            $this->load->view('billboard/edit_billboard', $data);
+//            //$this->edit_billboard();
+//        } elseif ($_POST['option'] == 'Delete') {
+//            $this->delete_billboard($_POST['id']);
+//        }
+//    }
 
     function add_billboard() {//$_POST => content, datetime, newsID ::: uploadfile => image
         //$this->load->helper('url');
