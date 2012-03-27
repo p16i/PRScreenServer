@@ -114,7 +114,7 @@
 
             }
             
-            //redirect(base_url().'index.php/admin/album/');
+            //redirect(base_url().'index.php/admin/album/');.
         }
         
         function edit_album_name(){//$_POST => id ,name

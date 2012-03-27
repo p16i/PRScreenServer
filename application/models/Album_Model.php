@@ -47,7 +47,7 @@ class Album_Model extends CI_Model{
                                         WHERE id = '.$index
                     );
             $index = $query->first_row()->Name;
-        }//else -> index should be name of album
+        }//else -> index should be name of album.
         
         $pics = get_filenames('./image_album/'.$index.'/');
         
