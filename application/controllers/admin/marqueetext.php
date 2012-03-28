@@ -67,7 +67,7 @@ Class marqueetext extends CI_Controller {
     }
 
     function list_marqueetext() {
-        $this->datatables->select('_datetime,content, isEnable,news_id,id');
+        $this->datatables->select('_datetime,content,isEnable,id');
         $this->datatables->from('marqueetext');
         $this->datatables->edit_column('isEnable','$1','isEnable');
         $this->datatables->edit_column('id', 'Edit | Delete', 'id');

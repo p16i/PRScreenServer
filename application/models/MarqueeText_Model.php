@@ -6,7 +6,7 @@ class MarqueeText_Model extends CI_Model{
         return $query->result();
     }
 
-    function get_enable($stat){
+    function get_enable(){
         $query = $this->db->query('SELECT * FROM marqueetext 
                                    WHERE isEnable = true ');
         return $query->result();

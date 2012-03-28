@@ -20,7 +20,8 @@ Class Query extends CI_Controller{
                             "headline"=>$row->Headline,
                             "content"=>$row->Content,
                             "dateTime"=>$row->_DateTime,
-                            "catagory"=>$row->Name  #In db, column name of catagory is "Name"
+                            "catagory"=>$row->Name,  #In db, column name of catagory is "Name" 
+                            "cID"=>$row->CatagoryID
                             );
         endforeach;
         $en_news = json_encode($news);
@@ -77,15 +78,16 @@ Class Query extends CI_Controller{
         $result = $this->MarqueeText_Model->get_enable();
 
         foreach($result as $row):
-            if($row->NewsID == null) $tempN = 0;
-            else $tempN = $row->NewsID;
+            //if($row->NewsID == null) $tempN = 0;
+            //else $tempN = $row->NewsID;
             $marqueeText[] = array("id"=>$row->ID, 
                             "content"=>$row->Content,
                             "dateTime"=>$row->_DateTime,
-                            "isEnable"=>$row->isEnable,
-                            "newsID"=>$tempN
+                            "isEnable"=>$row->isEnable
+                            //"newsID"=>$tempN
                     );
         endforeach;
+        echo json_encode($marqueeText);
     }
     
     function guestbook(){
@@ -98,12 +100,13 @@ Class Query extends CI_Controller{
             $result = $this->Guestbook_Model->get_guestbook();
         }
         foreach($result as $row):
-            $marqueeText[] = array("id"=>$row->ID, 
+            $guestbook[] = array("id"=>$row->ID, 
                             "content"=>$row->Content,
                             "imagePath"=>base_url().'image_GuestBook/'.$row->ImagePath,
                             "dateTime"=>$row->_DateTime,
                             "isEnable"=>$row->isEnable);
         endforeach; 
+        echo json_encode($guestbook);
     }
 }
 

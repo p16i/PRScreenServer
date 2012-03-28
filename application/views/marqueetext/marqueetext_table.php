@@ -6,7 +6,6 @@
             <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 128px; " aria-sort="ascending" >Date</th>
             <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 179px; " >Content</th>
             <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 50px; " >Enable</th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 50px; " >News ID</th>
             <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 108px; ">Options</th>
         </tr>
    
@@ -18,7 +17,6 @@
               <th rowspan="1" colspan="1">Date</th>
             <th rowspan="1" colspan="1">Content</th>
             <th rowspan="1" colspan="1">Enable</th>
-             <th rowspan="1" colspan="1">News ID</th>
             <th rowspan="1" colspan="1">Options</th>
           
         </tr>
