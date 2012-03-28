@@ -48,6 +48,7 @@ class Location_Model extends CI_Model{
     function edit($row){
         $this->db->query('UPDATE location 
                          SET RoomName = "'.$row['roomname'].'", 
+                             Floor = '.$row['floor'].', 
                              imagepath = "'.$row['imagepath'].'", 
                              CatagoryID = '.$row['catagoryID'].' 
                              WHERE ID = '.$row['id']

@@ -102,7 +102,7 @@ Class billboard extends CI_Controller {
         $this->datatables->from('billboard');
         $this->datatables->edit_column('imagepath', '<img src="resources/billboard/$1" class="thumbnail"/>', 'imagepath');
         //$this->datatables->edit_column('id', 'Edit | Delete', 'id');
-        $this->datatables->edit_column('id', '<a href="#billboard_page" class="edit_billboard_link">Edit</a>', 'id');
+        $this->datatables->edit_column('id', '<a href="#billboard_page" class="edit_billboard_link">Edit</a> | Delete', 'id');
         $json = $this->datatables->generate('UTF8');
         //  print_r($json);
         echo $json;
