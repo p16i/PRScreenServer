@@ -7,7 +7,7 @@ class News_Model extends CI_Model{
         $this->db->select('n.ID,n.Headline,n.Content,n._DateTime,c.Name');
         $this->db->from('news as n');
         $this->db->join('news_catagory as c','n.CatagoryID=c.id');
-        $this->db->order_by('ID');
+        $this->db->order_by('ID','desc');
         $query = $this->db->get();
         return $query->result();
     }
