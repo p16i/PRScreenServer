@@ -7,6 +7,16 @@
         <?= 'Room_Name : <br>' . form_input(array('name' => 'roomname', 'class' => 'input')) . '<br><br>'; ?>
         Upload Picture for Location :<br>
         <input type="file" name='image'/><br><br>
+        <select name="floor">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            
+            
+        </select>
         <?php
         $result = $this->db->get('location_catagory');
         $result = $result->result();
