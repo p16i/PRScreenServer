@@ -10,7 +10,7 @@ Class location extends CI_Controller {
         $this->load->model('Location_Catagory_Model');
     }
 
-    function add_location() {//$_POST => roomname, catagoryID :: upload file => image
+    function add_location() {//$_POST => roomname, catagoryID, floor :: upload file => image
         if ($_POST['roomname'] != '') {
             $config['upload_path'] = 'resources/location/';
             $config['allowed_types'] = 'gif|jpg|png';

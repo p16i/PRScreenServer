@@ -6,6 +6,7 @@
         <?php $this->load->view('header'); ?>
         <script src="<?php echo base_url(); ?>js/fetchDataFromDataTable.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/addResouce.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>js/editResource.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url(); ?>styles/dataTable.css" />
         <script type="text/javascript"></script>
     </head>

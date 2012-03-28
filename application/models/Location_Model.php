@@ -6,7 +6,7 @@ class Location_Model extends CI_Model{
 //        $query = $this->db->get('location');
 //        return $query->result();
 //        
-        $this->db->select('l.ID, l.RoomName, l.HitCounter, l.ImagePath, c.Name');
+        $this->db->select('l.ID, l.RoomName, l.HitCounter, l.Floor, l.ImagePath, c.Name, c.id AS CatagoryID');
         $this->db->from('location as l');
         $this->db->join('location_catagory as c','l.CatagoryID=c.id');
         $this->db->order_by('ID');
@@ -15,7 +15,7 @@ class Location_Model extends CI_Model{
     }
     
     function get_location_by_catagory($cat){
-        $query = $this->db->query('SELECT l.ID, l.RoomName, l.HitCounter, l.ImagePath, c.Name 
+        $query = $this->db->query('SELECT l.ID, l.RoomName, l.HitCounter, l.Floor, l.ImagePath, c.Name, c.id AS CatagoryID 
                                     FROM  location AS l
                                     JOIN location_catagory AS c ON l.CatagoryID = c.id
                                     WHERE c.name = \''.$cat.'\'');

@@ -60,9 +60,11 @@ Class Query extends CI_Controller{
             $location[] = array("id"=>$row->ID, 
                             "name"=>$row->RoomName,
                             "hitCounter"=>$row->HitCounter,
-                            //"imagePath"=>$row->ImagePath,
+                            "floor"=>$row->Floor,
                             "imagePath"=>base_url().'image_Location/'.$row->ImagePath,
-                            "catagory"=>$row->Name);
+                            "catagory"=>$row->Name, 
+                            "cID"=>$row->CatagoryID
+                );
         endforeach;
         echo json_encode($location);
     }
