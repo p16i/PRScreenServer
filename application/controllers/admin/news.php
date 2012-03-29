@@ -54,6 +54,8 @@ Class news extends CI_Controller {
             }
         }else
             echo 'Something Empty'; //blank input detect.
+        
+        redirect(base_url()."welcome#news_page",'refresh');
     }
 
 //    function delete_news($id) {//$_POST => id
@@ -80,7 +82,7 @@ Class news extends CI_Controller {
     function list_news() {
         $this->datatables->select('_datetime,headline, content, catagoryid,id');
         $this->datatables->from('news');
-        $this->datatables->edit_column('id', 'Edit | Delete', 'id');
+        $this->datatables->edit_column('id', '<a href="#news_page" onclick="return edit_news_link($1)">Edit</a> | Delete', 'id');
         $json = $this->datatables->generate('UTF8');
         //  print_r($json);
         echo $json;

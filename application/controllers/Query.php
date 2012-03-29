@@ -121,8 +121,8 @@ Class Query extends CI_Controller{
                                 "description"=>$row->description, 
                                 "path"=>$row->path,
                                 "isEnable"=>$row->isEnable,
-                                "catagory"=>$row->catagory,
-                                "name"=>$row->name
+                                "cID"=>$row->catagory,
+                                "catagory"=>$row->name
                 );
         endforeach;
         echo json_encode($aboutFac);
