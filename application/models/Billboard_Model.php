@@ -30,16 +30,20 @@ class Billboard_Model extends CI_Model{
 //                          WHERE id='.$row['id']);
 //    }
 //    
-    function set_enable($allid){
-        $this->disable_all();
-        $temp = '(';
-        foreach($allid as $id){
-            $temp = $temp.$id.','; 
-        }
-        $temp=$temp.'0)';
-        $this->db->query('UPDATE billboard  
-                          SET isEnable = TRUE 
-                          WHERE id in '.$temp);
+    function set_enable($id){
+//        $this->disable_all();
+//        $temp = '(';
+//        foreach($allid as $id){
+//            $temp = $temp.$id.','; 
+//        }
+//        $temp=$temp.'0)';
+//        $this->db->query('UPDATE billboard  
+//                          SET isEnable = TRUE 
+//                          WHERE id in '.$temp);
+        $this->db->query("UPDATE billboard 
+                            SET isEnable = IF (isEnable, 0, 1) 
+                            WHERE id=".$id);
+        
     }
     
     function disable_all(){
@@ -64,6 +68,7 @@ class Billboard_Model extends CI_Model{
                                 ImagePath = "'.$row['imagepath'].'",
                                 NewsID = '.$row['newsID'].'
                             WHERE id = '.$row['id'] );
+        
     }
     
 }

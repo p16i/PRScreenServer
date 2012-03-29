@@ -5,7 +5,7 @@
 
 var base_url = 'http://10.0.100.59/PRScreenServer';
 
-function test(id){
+function edit_billboard_link(id){
     $.getJSON(base_url+'/admin/billboard/get_billboard?id='+id, function(data){
         image = data['ImagePath'];
         $("#image").attr("src",base_url+'/resources/billboard/'+image);
@@ -27,6 +27,12 @@ function test(id){
                 }
             }            
         });
+    
+    return false;
+}
+
+function set_billboard_enable_link(id){
+    alert(id);
     
     return false;
 }

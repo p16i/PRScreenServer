@@ -63,19 +63,20 @@ Class billboard extends CI_Controller {
 
     function set_enable() {//$_POST => id[]
         //$_POST['id'] = array(1,2,3,4,9);
-        $this->Billboard_Model->set_enable($_POST["id"]);
+        $this->Billboard_Model->set_enable($_GET["id"]);
+        redirect(base_url()."welcome#billboard_page",'refresh');
     }
 
-    function delete_billboard($id) {
+    function delete_billboard() {
+        $id = $_GET['id'];
         $row = $this->Billboard_Model->get_billboard_by_id($id);
-        unlink('./image_billboard/' . $row->ImagePath); //also delete image file from server
+        unlink('./resources/billboard/' . $row->ImagePath); //also delete image file from server
         $this->Billboard_Model->delete($id);
         $_POST['option'] = null;
-        $this->index();
+        redirect(base_url()."welcome#billboard_page",'refresh');
     }
 
     function edit_billboard() {  //$_POST => id, content, newsID, imagepath(oldPath)
-        print_r($_POST);
         if ($_POST['content'] != '') {
             $config['upload_path'] = 'resources/billboard/';
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -111,8 +112,13 @@ Class billboard extends CI_Controller {
         $this->datatables->from('billboard');
         $this->datatables->edit_column('imagepath', '<img src="resources/billboard/$1" class="thumbnail"/>', 'imagepath');
         //$this->datatables->edit_column('id', 'Edit | Delete', 'id');
-        $this->datatables->edit_column('id', '<a href="#billboard_page" onclick="return test($1)">Edit</a> | Delete', 'id');
-        $this->datatables->edit_column('isEnable', ("$1"==True)?'True':'False','isEnable');
+        $this->datatables->edit_column('isEnable', '<a href="'.  base_url().'admin/billboard/set_enable?id=$2">$1</a>','isEnable,id');
+        //$this->datatables->edit_column('isEnable', ('$1'=='TRUE'?'True':'False') ,'isEnable');
+//        $this->datatables->edit_column('id', '<a href="#billboard_page" onclick="return edit_billboard_link($1)">Edit</a> | 
+//                                             <a href="'.  base_url().'admin/billboard/set_enable?id=$1">Delete</a>', 'id');
+        $this->datatables->edit_column('id', '<a href="#billboard_page" onclick="return edit_billboard_link($1)">Edit</a> | <a href="'. base_url().'admin/billboard/delete_billboard?id=$1">Delete</a>', 'id');
+        
+        
         $json = $this->datatables->generate('UTF8');
         //print_r($json);
         echo $json;
