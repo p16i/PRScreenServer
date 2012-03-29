@@ -4,9 +4,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>PR Screen Management System</title>
         <?php $this->load->view('header'); ?>
+        <script src="<?php echo base_url(); ?>js/editResource.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/fetchDataFromDataTable.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/addResouce.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>js/editResource.js" type="text/javascript"></script>
+        
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url(); ?>styles/dataTable.css" />
         <script type="text/javascript"></script>
     </head>
@@ -86,7 +87,10 @@
                             <img src="<?php echo base_url(); ?>/styles/images/add-icon.png" class="add_icon"/>    
                         </a>
                     </div>
+                    
                     <?php $this->load->view('billboard/billboard_table') ?>
+
+
                 </div>
                 <div class="page" id="gallery_page">
                     <div class="header_1">
@@ -190,11 +194,13 @@
 
 <?php
 $this->load->view('billboard/add_billboard');
+$this->load->view('billboard/edit_billboard');
 $this->load->view('news/add_news');
 $this->load->view('location/add_location');
 $this->load->view('aboutfac/add_aboutfac');
 $this->load->view('marqueetext/add_marqueetext');
 $this->load->view('footer');
+
 ?>
 </body>
 

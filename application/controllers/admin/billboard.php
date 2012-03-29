@@ -75,9 +75,10 @@ Class billboard extends CI_Controller {
     }
 
     function edit_billboard() {  //$_POST => id, content, newsID, imagepath(oldPath)
+        print_r($_POST);
         if ($_POST['content'] != '') {
-            $config['upload_path'] = './image_billboard/';
-            $config['allowed_types'] = 'gif|jpg|png';
+            $config['upload_path'] = 'resources/billboard/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
             $config['max_size'] = '0';
             $config['max_width'] = '0';
             $config['max_height'] = '0';
@@ -87,14 +88,22 @@ Class billboard extends CI_Controller {
 
             //print_r($this->upload->data());
             $image_data = $this->upload->data();
-            if ($image_data['file_name'] != null) {
+            if ($image_data['file_name'] == null) { //if user dont change image
+                $_POST['imagepath'] = $_POST['oldpath'];
+            }else{
+                print_r($image_data);
                 $_POST['imagepath'] = $image_data['file_name'];
             }
             $this->Billboard_Model->edit($_POST);
         }
-
-        $_POST['option'] = null;
-        $this->index();
+        redirect(base_url()."welcome#billboard_page",'refresh');
+        //$_POST['option'] = null;
+        //$this->index();
+    }
+    
+    function get_billboard(){
+        $bill_row = $this->Billboard_Model->get_billboard_by_id($_GET['id']); 
+        echo json_encode($bill_row);
     }
 
     function list_billboard() {
@@ -102,9 +111,10 @@ Class billboard extends CI_Controller {
         $this->datatables->from('billboard');
         $this->datatables->edit_column('imagepath', '<img src="resources/billboard/$1" class="thumbnail"/>', 'imagepath');
         //$this->datatables->edit_column('id', 'Edit | Delete', 'id');
-        $this->datatables->edit_column('id', '<a href="#billboard_page" class="edit_billboard_link">Edit</a> | Delete', 'id');
+        $this->datatables->edit_column('id', '<a href="#billboard_page" onclick="return test($1)">Edit</a> | Delete', 'id');
+        $this->datatables->edit_column('isEnable', ("$1"==True)?'True':'False','isEnable');
         $json = $this->datatables->generate('UTF8');
-        //  print_r($json);
+        //print_r($json);
         echo $json;
     }
 

@@ -4,7 +4,7 @@
  */
 
 $(document).ready(function(){
-    var base_url = 'http://localhost/PRScreenServer/' ;
+    var base_url = 'http://10.0.100.59/PRScreenServer/' ;
     
     
     

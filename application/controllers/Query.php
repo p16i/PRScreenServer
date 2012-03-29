@@ -37,7 +37,7 @@ Class Query extends CI_Controller{
             else $tempN = $row->NewsID;
             $billboard[] = array("id"=>$row->ID, 
                             "content"=>$row->Content,
-                            "imagePath"=>base_url().'image_BillBoard/'.$row->ImagePath,
+                            "imagePath"=>base_url().'resources/billboard/'.$row->ImagePath,
                             "dateTime"=>$row->_DateTime,
                             "isEnable"=>$row->isEnable, 
                             "newsID"=>$tempN
@@ -61,7 +61,7 @@ Class Query extends CI_Controller{
                             "name"=>$row->RoomName,
                             "hitCounter"=>$row->HitCounter,
                             "floor"=>$row->Floor,
-                            "imagePath"=>base_url().'image_Location/'.$row->ImagePath,
+                            "imagePath"=>base_url().'resources/location/'.$row->ImagePath,
                             "catagory"=>$row->Name, 
                             "cID"=>$row->CatagoryID
                 );
@@ -105,8 +105,8 @@ Class Query extends CI_Controller{
             $guestbook[] = array("id"=>$row->ID, 
                             "name"=>$row->Name,
                             "content"=>$row->Content,
-                            "imagePath"=>base_url().'image_GuestBook/'.$row->ImagePath,
-                            "soundPath"=>base_url().'image_GuestBook/'.$row->soundPath,
+                            "imagePath"=>base_url().'resources/guestbook/'.$row->ImagePath,
+                            "soundPath"=>base_url().'resources/guestbook/'.$row->SoundPath,
                             "dateTime"=>$row->_DateTime);
         endforeach; 
         echo json_encode($guestbook);

@@ -3,11 +3,41 @@
  * and open the template in the editor.
  */
 
+var base_url = 'http://10.0.100.59/PRScreenServer';
+
+function test(id){
+    $.getJSON(base_url+'/admin/billboard/get_billboard?id='+id, function(data){
+        image = data['ImagePath'];
+        $("#image").attr("src",base_url+'/resources/billboard/'+image);
+        $("#textarea").attr("value",data['Content']);
+        $("#bill_id").attr("value",data['ID']);
+        $("#bill_oldpath").attr("value",data['ImagePath']);
+        if(data['NewsID']==null)data['NewsID']='Null';
+        $('#dropdown option[value='+data['NewsID']+']').attr('selected', 'selected');
+    });
+    
+    $( "#edit_billboard" ).dialog({
+            modal:true,
+            width:500,
+            height:500,
+            buttons: {
+                Edit: function() {
+                 $("#edit_billboard_form").submit();
+              
+                }
+            }            
+        });
+    
+    return false;
+}
 
 
 $(document).ready(function(){
-    var base_url = 'http://localhost/PRScreenServer/' ;
     
+    
+
+    
+
      /// Add Billboard
         $(".edit_billboard_link").click(function(){   
             alert("aaaaaass");

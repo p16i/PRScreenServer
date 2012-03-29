@@ -73,9 +73,9 @@ Class location extends CI_Controller {
     }
 
     function list_location() {
-        $this->datatables->select('imagepath,roomname,hitcounter, name,id');
+        $this->datatables->select('imagepath,roomname,hitcounter, name,location.id');
         $this->datatables->from('location');
-        $this->db->join('location_catagory', 'location_catagory.catagoryid = location.catagoryid');
+        $this->db->join('location_catagory', 'location_catagory.id = location.catagoryid');
         $this->datatables->edit_column('imagepath', '<img src="resources/location/$1" class="thumbnail"/>', 'imagepath');
         $this->datatables->edit_column('id', 'Edit | Delete', 'id');
         $json = $this->datatables->generate('UTF8');

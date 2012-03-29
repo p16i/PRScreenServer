@@ -23,6 +23,9 @@ Class guestbook extends CI_Controller {
 
     function add_guestbook() {//$_POST => content, soundPath, imagePath, datetime
         ////////////////////////////////////////
+        $_POST['_datetime'] = mdate('%Y-%m-%d %H:%i:%s', time());
+        if(!isset($_POST['soundPath'])) $_POST['soundPath'] = 'Null';
+        if(!isset($_POST['imagePath'])) $_POST['imagePath'] = 'Null';
         $this->load->model("Guestbook_Model");
         $this->Guestbook_Model->insert($_POST);
     }
