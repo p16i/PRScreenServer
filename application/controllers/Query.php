@@ -103,10 +103,11 @@ Class Query extends CI_Controller{
         }
         foreach($result as $row):
             $guestbook[] = array("id"=>$row->ID, 
+                            "name"=>$row->Name,
                             "content"=>$row->Content,
                             "imagePath"=>base_url().'image_GuestBook/'.$row->ImagePath,
-                            "dateTime"=>$row->_DateTime,
-                            "isEnable"=>$row->isEnable);
+                            "soundPath"=>base_url().'image_GuestBook/'.$row->soundPath,
+                            "dateTime"=>$row->_DateTime);
         endforeach; 
         echo json_encode($guestbook);
     }
