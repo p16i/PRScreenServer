@@ -111,6 +111,24 @@ Class Query extends CI_Controller{
         endforeach; 
         echo json_encode($guestbook);
     }
+    
+    function aboutFac(){
+        $this->load->model("AboutFac_Model");
+        $result = $this->AboutFac_Model->get_aboutfac();
+        
+        foreach($result as $row):
+            $aboutFac[] = array("id"=>$row->id, 
+                                "description"=>$row->description, 
+                                "path"=>$row->path,
+                                "isEnable"=>$row->isEnable,
+                                "catagory"=>$row->catagory,
+                                "name"=>$row->name
+                );
+        endforeach;
+        echo json_encode($aboutFac);
+        
+    }
+    
 }
 
 

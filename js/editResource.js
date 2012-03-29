@@ -5,6 +5,8 @@
 
 var base_url = 'http://10.0.100.59/PRScreenServer';
 
+
+//Edit Billboard
 function edit_billboard_link(id){
     $.getJSON(base_url+'/admin/billboard/get_billboard?id='+id, function(data){
         image = data['ImagePath'];
@@ -31,40 +33,10 @@ function edit_billboard_link(id){
     return false;
 }
 
-function set_billboard_enable_link(id){
-    alert(id);
-    
-    return false;
-}
-
 
 $(document).ready(function(){
     
     
-
-    
-
-     /// Add Billboard
-        $(".edit_billboard_link").click(function(){   
-            alert("aaaaaass");
-        
-        $( "#add_billboard" ).dialog({
-            modal:true,
-            width:500,
-            height:500,
-            buttons: {
-                Add: function() {
-                 $("#billboard_form").submit();
-              
-                }
-            }
-                        
-                        
-        });
-        //   e.preventDefault(); 
-      
-        return false;
-    });
     
     /// Add News
         $("#add_news_link").click(function(e){   
