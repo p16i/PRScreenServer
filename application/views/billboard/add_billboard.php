@@ -15,7 +15,6 @@
             }
            
             echo 'Choose News to Link With : <br>'.form_dropdown('newsID',$options,'Null');
-            //echo form_close();
         ?>
         </form>
     </div>

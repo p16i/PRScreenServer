@@ -34,7 +34,7 @@ Class guestbook extends CI_Controller {
         $row = $this->Guestbook_Model->get_guestbook_by_id($id);
         if (isset($row->ImagePath)) {
             if ($row->ImagePath != Null) {
-                unlink('./image_guestbook/' . $row->ImagePath);
+                unlink('./resources/guestbook/' . $row->ImagePath);
             }
         }
         $this->Guestbook_Model->delete($id);

@@ -176,44 +176,54 @@ function delete_location_link(id){
            );  
     return false;
 }
-    
-    
 
-$(document).ready(function(){
-   
-    /// Add About Fac
-    $("#add_about_fac_link").click(function(e){   
-        $( "#add_about_fac" ).dialog({
-            modal:true,
-            width:500,
-            height:500,
-            buttons: {
-                Add: function() {
-                    var form_data = $("#about_fac_form").serialize();
-                    $.ajax(
+// Edit AboutFac
+function edit_aboutfac_link(id,desc,imagepath,catagoryid){
+    //alert(id);alert(desc);alert(imagepath);alert(catagoryID);
+    $("#aboutfac_preview").attr("src",base_url+'/resources/aboutfac/'+imagepath);
+    $("input[name^='oldpath']").attr("value",imagepath);
+    $("input[name^='id']").attr("value",id);
+    $("textarea[name^='description']").attr("value",desc);
+    $("select[name^='catagoryID'] option[value="+catagoryid+"]").attr('selected','selected');
+    
+    $("#edit_aboutfac").dialog({
+       modal:true,
+       width:500,
+       height:500,
+       buttons: {
+           Edit: function() {
+               $("#edit_aboutfac_form").submit();
+           }
+       }
+    });
+    return false;
+}    
+
+// Delete AboutFac
+function delete_aboutfac_link(id){
+   var location_data = 'id='+id;
+    $.ajax(
                     {
                         type: "POST",
-                        url: base_url+"admin/aboutfac/add_aboutfac",
-                        data: form_data,
+                        url: base_url+"/admin/aboutfac/delete_aboutfac",
+                        data: location_data,
                         dataType: "json",
                         success: function(data){
                             $('#aboutfac_table').dataTable().fnDraw();
-                            $("#add_about_fac").dialog('close');
                         
                         // location.reload();
+                        },
+                        error: function(data){
+                            //alert(data);
                         }
                     }
-                    );
-                                    
-                }
-            }
-                        
-                        
-        });
-        //   e.preventDefault(); 
-      
-        return false;
-    });
+           );  
+    return false;
+}
+
+$(document).ready(function(){
+   
+   
     
 
     /// Add Marquee Link

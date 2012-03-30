@@ -200,6 +200,7 @@ $this->load->view('news/edit_news');
 $this->load->view('location/add_location');
 $this->load->view('location/edit_location');
 $this->load->view('aboutfac/add_aboutfac');
+$this->load->view('aboutfac/edit_aboutfac');
 $this->load->view('marqueetext/add_marqueetext');
 $this->load->view('footer');
 

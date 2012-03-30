@@ -40,10 +40,6 @@ Class location extends CI_Controller {
     }
 
     function edit_location() { //$_POST => id, roomname, catagoryID, imagepath(oldPath)
-//            $_POST['id'] = 7;
-//            $_POST['roomname'] = 'TestEdit';
-//            $_POST['catagoryID'] = 1;
-//            $_POST['imagepath'] = '73p25.jpg';
         if ($_POST['roomname'] != '') {
             $config['upload_path'] = 'resources/location/';
             $config['allowed_types'] = 'gif|jpg|png';
@@ -68,6 +64,8 @@ Class location extends CI_Controller {
 
     function delete_location() {
         $id = $_POST['id'];
+        $row = $this->Location_Model->get_location_by_id($id);
+        unlink('./resources/location/' . $row->ImagePath); //also delete image file from server
         $this->Location_Model->delete($id);
     }
 

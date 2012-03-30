@@ -6,10 +6,36 @@
  */
 class AboutFac_Model extends CI_Model{
     
-    function insert($data){
-        $data['isEnable'] = TRUE;
-        $this->db->insert('aboutfac', $data); 
+    function insert($row){
+//        $this->db->query('INSERT INTO aboutfac 
+//                            VALUES (null, 
+//                                    "'.$row['desc'].'", 
+//                                    "'.$row['imagepath'].'",
+//                                    '.TRUE.',
+//                                    '.$row['catagoryID'].'
+//                            )');
+        $row['isEnable']=True;
+        $this->db->insert('aboutfac', $row); 
     }
+    
+    function edit($row){
+        $this->db->query('UPDATE aboutfac
+                            SET description = "'.$row['description'].'",
+                                path = "'.$row['path'].'",
+                                catagory = '.$row['catagory'].' 
+                            WHERE id = '.$row['id'].'
+'                       );
+    }
+    
+    function delete($id){
+        $this->db->delete('aboutfac',array('id'=>$id));
+    }
+    
+    function get_aboutfac_by_id($id){
+        $query = $this->db->get_where('aboutfac',array('id'=>$id));
+        return $query->first_row();
+    }
+        
     
     function get_aboutfac(){
         $this->db->select('a.id, a.description, a.path. a.isEnable, a.catagory, c.name');
