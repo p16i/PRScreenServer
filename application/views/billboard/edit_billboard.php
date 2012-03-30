@@ -1,6 +1,6 @@
 <div id="edit_billboard" title="Edit Billboard" class="dialog">
         
-        <form method="post"   id="edit_billboard_form" action="http://localhost/PRScreenServer/index.php/admin/billboard/edit_billboard" enctype="multipart/form-data">
+        <form method="post"   id="edit_billboard_form" action="http://10.0.100.74/PRScreenServer/index.php/admin/billboard/edit_billboard" enctype="multipart/form-data">
             Current Billboard :<br>
             <img id="image" height="150" width="150"/><br>
             Change Picture for Billboard :<br>

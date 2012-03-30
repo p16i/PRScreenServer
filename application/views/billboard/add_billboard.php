@@ -1,6 +1,6 @@
 <div id="add_billboard" title="Add Billboard" class="dialog">
         
-        <form method="post"   id="billboard_form" action="http://localhost/PRScreenServer/index.php/admin/billboard/add_billboard" enctype="multipart/form-data">
+        <form method="post"   id="billboard_form" action="http://10.0.100.74/PRScreenServer/index.php/admin/billboard/add_billboard" enctype="multipart/form-data">
             Upload Picture for Billboard :<br>
             <input type="file" name='image'/><br><br>
         <?php

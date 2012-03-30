@@ -68,12 +68,11 @@ Class billboard extends CI_Controller {
     }
 
     function delete_billboard() {
-        $id = $_GET['id'];
+        $id = $_POST['id'];
         $row = $this->Billboard_Model->get_billboard_by_id($id);
         unlink('./resources/billboard/' . $row->ImagePath); //also delete image file from server
         $this->Billboard_Model->delete($id);
-        $_POST['option'] = null;
-        redirect(base_url()."welcome#billboard_page",'refresh');
+        //redirect(base_url()."welcome#billboard_page",'refresh');
     }
 
     function edit_billboard() {  //$_POST => id, content, newsID, imagepath(oldPath)
@@ -116,7 +115,7 @@ Class billboard extends CI_Controller {
         //$this->datatables->edit_column('isEnable', ('$1'=='TRUE'?'True':'False') ,'isEnable');
 //        $this->datatables->edit_column('id', '<a href="#billboard_page" onclick="return edit_billboard_link($1)">Edit</a> | 
 //                                             <a href="'.  base_url().'admin/billboard/set_enable?id=$1">Delete</a>', 'id');
-        $this->datatables->edit_column('id', '<a href="#billboard_page" onclick="return edit_billboard_link($1)">Edit</a> | <a href="'. base_url().'admin/billboard/delete_billboard?id=$1">Delete</a>', 'id');
+        $this->datatables->edit_column('id', '<a href="#billboard_page" onclick="return edit_billboard_link($1)">Edit</a> | <a href="#" onclick="return delete_billboard_link($1)">Delete</a>', 'id');
         
         
         $json = $this->datatables->generate('UTF8');
