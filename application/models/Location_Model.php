@@ -32,7 +32,8 @@ class Location_Model extends CI_Model{
     function insert($row){
         $this->db->query('INSERT INTO location 
                           VALUES   (null, 
-                                    "'.$row['roomname'].'",
+                                    "'.$row['roomname'].'", 
+                                    '.$row['floor'].', 
                                     0, 
                                     "'.$row['imagepath'].'", 
                                     '.$row['catagoryID'].')'

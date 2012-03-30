@@ -112,7 +112,6 @@ function delete_news_link(id){
                         success: function(data){
                             
                             $('#news_table').dataTable().fnDraw();
-                            //$("#edit_news").dialog('close');
                         
                         // location.reload();
                         },
@@ -140,7 +139,7 @@ function edit_location_link(id,roomname,imagepath,catagoryid,floor){
         width:500,
         height:500,
         buttons: {
-            Add: function() {
+            Edit: function() {
                 $("#edit_location_form").submit();
             }
         }
@@ -153,6 +152,29 @@ function edit_location_link(id,roomname,imagepath,catagoryid,floor){
     return false;
     
     
+}
+
+//Delete Location
+function delete_location_link(id){
+    var location_data = 'id='+id;
+    $.ajax(
+                    {
+                        type: "POST",
+                        url: base_url+"/admin/location/delete_location",
+                        data: location_data,
+                        dataType: "json",
+                        success: function(data){
+                            
+                            $('#location_table').dataTable().fnDraw();
+                        
+                        // location.reload();
+                        },
+                        error: function(data){
+                            //alert(data);
+                        }
+                    }
+           );  
+    return false;
 }
     
     

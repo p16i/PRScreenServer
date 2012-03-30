@@ -5,7 +5,7 @@
 
 
 $(document).ready(function(){
-    var base_url = 'http://localhost/PRScreenServer/' ;
+    var base_url = 'http://10.0.100.74/PRScreenServer/' ;
     
      /// Add Billboard
         $("#add_billboard_link").click(function(e){   
@@ -15,7 +15,7 @@ $(document).ready(function(){
             height:500,
             buttons: {
                 Add: function() {
-                 $("#billboard_form").submit();
+                    $("#billboard_form").submit();
               
                 }
             }
