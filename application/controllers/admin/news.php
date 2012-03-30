@@ -43,51 +43,57 @@ Class news extends CI_Controller {
             $data['content'] = $_POST['content'];
             $data['catagoryid'] = $_POST['catagoryID'];
             $this->News_Model->insert($data);
-            if (isset($_POST['marquee'])) { //if admin want to bind the news to marquee
-                //echo '<br>ABCDASDAWEDAWD<br>';
-                $marquee = array();
-                $marquee['Content'] = $_POST['headline'];
-                $marquee['_datetime'] = $_POST['_datetime'];
-                $marquee['isEnable'] = TRUE;
-                $marquee['news_id'] = $this->News_Model->get_last_id();
-                $this->MarqueeText_Model->insert($marquee);
-            }
+//            if (isset($_POST['marquee'])) { //if admin want to bind the news to marquee
+//                //echo '<br>ABCDASDAWEDAWD<br>';
+//                $marquee = array();
+//                $marquee['Content'] = $_POST['headline'];
+//                $marquee['_datetime'] = $_POST['_datetime'];
+//                $marquee['isEnable'] = TRUE;
+//                $marquee['news_id'] = $this->News_Model->get_last_id();
+//                $this->MarqueeText_Model->insert($marquee);
+//            }
         }else
             echo 'Something Empty'; //blank input detect.
         
         redirect(base_url()."welcome#news_page",'refresh');
     }
 
-//    function delete_news($id) {//$_POST => id
-//        $this->News_Model->delete($id);
-//        $_POST['option'] = null;
-//        $this->index();
-//    }
-//
-//    function edit_news() {//$_POST => id, content, headline, catagoryID
-//        //echo $_POST['id'];
-//        $this->News_Model->edit($_POST);
-//
-//        if ($_POST['headline'] != '' && $_POST['content'] != '') {
-//            //change content of marquee in case of news headline have change
+    function delete_news() {//$_POST => id
+        $this->News_Model->delete($_POST['id']);
+    }
+
+    function edit_news() {//$_POST => id, content, headline, catagoryID
+        //echo $_POST['id'];
+        //$_POST['id'] = $_POST['news_id'];
+
+        if ($_POST['headline'] != '' && $_POST['content'] != '') {
+            $this->News_Model->edit($_POST);
+            //change content of marquee in case of news headline have change
 //            $marquee['newsID'] = $_POST['id'];
 //            $marquee['content'] = $_POST['headline'];
 //
 //            $this->MarqueeText_Model->edit($marquee);
-//            $this->index();
-//        }else
-//            echo 'Something Empty';
-//    }
+            
+        }else
+            echo 'Something Empty';
+    }
 
     function list_news() {
-        $this->datatables->select('_datetime,headline, content, catagoryid,id');
+        $this->datatables->select('_datetime,headline, content, c.name, news.id, c.id AS catagoryid');
         $this->datatables->from('news');
-        $this->datatables->edit_column('id', '<a href="#news_page" onclick="return edit_news_link($1)">Edit</a> | Delete', 'id');
+        $this->datatables->join('news_catagory as c','news.catagoryid=c.id');
+        $this->datatables->edit_column('news.id', 
+                                        '<a href="#news_page" onclick="return edit_news_link($1,\'$2\',\'$3\',$4)">Edit</a> | <a href="#" onclick="return delete_news_link($1)">Delete</a>',
+                                        'news.id,headline, content,catagoryid');
         $json = $this->datatables->generate('UTF8');
         //  print_r($json);
         echo $json;
     }
 
+    function get_catagory(){
+        
+        
+    }
 }
 
 ?>

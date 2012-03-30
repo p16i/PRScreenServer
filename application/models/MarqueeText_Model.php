@@ -31,7 +31,7 @@ class MarqueeText_Model extends CI_Model{
     function edit($row){
         $this->db->query('UPDATE marqueetext 
                           SET Content = "'.$row['content'].'" 
-                          WHERE newsID = '.$row['newsID']);
+                          WHERE ID = '.$row['id']);
     }
     
     function delete($id){
