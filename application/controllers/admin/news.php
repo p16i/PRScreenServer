@@ -10,26 +10,6 @@ Class news extends CI_Controller {
         $this->load->model('News_Catagory_Model');
         $this->load->model('MarqueeText_Model');
     }
-//
-//    function index() {
-//        if (!isset($_POST['option'])) {
-//            $result = $this->News_Model->get_news();
-//            $data['result'] = $result;
-//            $this->load->view("news/index", $data);
-//        } elseif ($_POST['option'] == 'Add News') {
-//            $result = $this->News_Catagory_Model->get_news_catagory();
-//            $data['result'] = $result;
-//            $this->load->view('news/add_news', $data);
-//        } elseif ($_POST['option'] == 'Edit Selected') {//$_POST => id
-//            $news_result = $this->News_Model->get_news_by_id($_POST['id']);
-//            $catagory_result = $this->News_Catagory_Model->get_news_catagory();
-//            $data['news_result'] = $news_result;
-//            $data['catagory_result'] = $catagory_result;
-//            $this->load->view('news/edit_news', $data); //send all old data to represent to the admin
-//        } elseif ($_POST['option'] == 'Delete') {
-//            $this->delete_news($_POST['id']);
-//        }
-//    }
 
     function add_news() { //$_POST => headline, content, datetime, catagoryID
         //echo "TEST".$_POST['datetime'];
@@ -67,6 +47,11 @@ Class news extends CI_Controller {
         //$_POST['id'] = $_POST['news_id'];
 
         if ($_POST['headline'] != '' && $_POST['content'] != '') {
+            
+            //$_POST['content'] = substr_count($_POST['content'],"\n");
+            //$_POST['content'] = str_replace("\n", '\\n', $_POST['content']);
+            //$_POST['content'] = str_replace("\r", '', $_POST['content']);
+            
             $this->News_Model->edit($_POST);
             //change content of marquee in case of news headline have change
 //            $marquee['newsID'] = $_POST['id'];
@@ -86,8 +71,11 @@ Class news extends CI_Controller {
                                         '<a href="#news_page" onclick="return edit_news_link($1,\'$2\',\'$3\',$4)">Edit</a> | <a href="#" onclick="return delete_news_link($1)">Delete</a>',
                                         'news.id,headline, content,catagoryid');
         $json = $this->datatables->generate('UTF8');
-        //  print_r($json);
-        echo $json;
+        
+        //print_r($json);
+        //echo $json;
+        
+        echo str_replace(array("\n","\r"), array("<br/>",""), $json);
     }
 
     function get_catagory(){

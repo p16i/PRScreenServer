@@ -5,16 +5,20 @@
 
 
 $(document).ready(function(){
-    var base_url = 'http://10.0.100.74/PRScreenServer/' ;
+    //var base_url = 'http://10.0.100.191/PRScreenserver/';
+    //base_url is defined on main.php in script code
     
      /// Add Billboard
         $("#add_billboard_link").click(function(e){   
+            //$("#billboard_form").attr("action",base_url+"admin/billboard/add_billboard");
         $( "#add_billboard" ).dialog({
             modal:true,
             width:500,
             height:500,
             buttons: {
                 Add: function() {
+                    //add action url to form
+                    $("#billboard_form").attr("action",base_url+"admin/billboard/add_billboard"); //base_url is defined on main.php in script code
                     $("#billboard_form").submit();
               
                 }
@@ -40,7 +44,7 @@ $(document).ready(function(){
                     $.ajax(
                     {
                         type: "POST",
-                        url: base_url+"admin/news/add_news",
+                        url: base_url+"index.php/admin/news/add_news",
                         data: form_data,
                         dataType: "json",
                         success: function(data){
@@ -72,6 +76,7 @@ $(document).ready(function(){
             height:500,
             buttons: {
                 Add: function() {
+                    $("#location_form").attr("action",base_url+"admin/location/add_location");
                     $("#location_form").submit();
                  
                 }
@@ -94,6 +99,7 @@ $(document).ready(function(){
             height:500,
             buttons: {
                 Add: function() {
+                    $("#aboutfac_form").attr("action",base_url+"admin/aboutfac/add_aboutfac");
                     $("#aboutfac_form").submit();
                     
                                     
@@ -121,7 +127,7 @@ $(document).ready(function(){
                     $.ajax(
                     {
                         type: "POST",
-                        url: base_url+"admin/marqueetext/add_marqueetext",
+                        url: base_url+"index.php/admin/marqueetext/add_marqueetext",
                         data: form_data,
                         dataType: "json",
                         success: function(data){
@@ -160,3 +166,4 @@ $(document).ready(function(){
     
     
 });
+

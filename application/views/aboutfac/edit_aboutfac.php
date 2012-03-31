@@ -1,5 +1,5 @@
 <div id="edit_aboutfac" title="Edit Information About Faculty" class="dialog">
-    <form method="post" id="edit_aboutfac_form" action="http://10.0.100.74/PRScreenServer/index.php/admin/aboutfac/edit_aboutfac" enctype="multipart/form-data">
+    <form method="post" id="edit_aboutfac_form" action="" enctype="multipart/form-data"><!--action is set from editResource.js-->
         Current Picture for Information About Faculty :<br>
         <img id="aboutfac_preview" height="150" width="150"/><br><br>
         Change Picture for Information About Faculty :<br>

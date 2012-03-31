@@ -9,7 +9,11 @@
         <script src="<?php echo base_url(); ?>js/addResouce.js" type="text/javascript"></script>
         
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url(); ?>styles/dataTable.css" />
-        <script type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            
+            var base_url = 'http://10.0.100.191/PRScreenServer/' ;
+        </script>
     </head>
     <body>
 
@@ -202,6 +206,7 @@ $this->load->view('location/edit_location');
 $this->load->view('aboutfac/add_aboutfac');
 $this->load->view('aboutfac/edit_aboutfac');
 $this->load->view('marqueetext/add_marqueetext');
+$this->load->view('marqueetext/edit_marqueetext');
 $this->load->view('footer');
 
 ?>

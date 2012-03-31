@@ -51,7 +51,7 @@ Class guestbook extends CI_Controller {
         $this->datatables->edit_column('id', 'Edit | Delete', 'id');
         $json = $this->datatables->generate('UTF8');
         //  print_r($json);
-        echo $json;
+        echo str_replace(array("\n","\r"), array("<br/>",""), $json);
     }
 
 }

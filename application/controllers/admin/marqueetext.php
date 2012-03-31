@@ -10,26 +10,6 @@ Class marqueetext extends CI_Controller {
         $this->load->model('News_Model');
     }
 
-//    function index() {
-//        if (!isset($_POST['option'])) {
-//            $result = $this->MarqueeText_Model->get_marqueetext();
-//            $data['result'] = $result;
-//            $this->load->view("marqueetext/index", $data);
-//        } elseif ($_POST['option'] == 'Add MarqueeText') {
-//            $result = $this->News_Model->get_news();
-//            $data['result'] = $result;
-//            $this->load->view('marqueetext/add_marqueetext', $data);
-//        } elseif ($_POST['option'] == 'Edit Selected') {//$_POST => id
-//            $marqueeText_result = $this->News_Model->get_news_by_id($_POST['id']);
-//            $news_result = $this->News_Catagory_Model->get_news_catagory();
-//            $data['marqueetext_result'] = $marqueeText_result;
-//            $data['news_result'] = $news_result;
-//            $this->load->view('marqueetext/edit_marqueetext', $data); //send all old data to represent to the admin
-//        } elseif ($_POST['option'] == 'Delete') {
-//            $this->delete_marqueetext($_POST['id']);
-//        }
-//    }
-
     function add_marqueetext() {
         $_POST['_datetime'] = mdate('%Y-%m-%d %H:%i:%s', time());
         $_POST['isEnable'] = TRUE;
@@ -55,25 +35,33 @@ Class marqueetext extends CI_Controller {
        // $this->index();
     }
 
-    function delete_marqueetext($id) {
-        $this->MarqueeText_Model->delete($id);
-        $_POST['option'] = null;
-        $this->index();
+    function delete_marqueetext() {
+        $this->MarqueeText_Model->delete($_POST['id']);
     }
 
     function set_enable() {//$_POST => id[]
         //$_POST['id'] = array(1,2,3,4,9);
         $this->MarqueeText_Model->set_enable($_POST["id"]);
     }
+    
+    function edit_marqueetext(){
+        if($_POST['content']!=''){
+            $this->MarqueeText_Model->edit($_POST);
+        }else{
+            //content is blank
+        }
+    }
 
     function list_marqueetext() {
         $this->datatables->select('_datetime,content,isEnable,id');
         $this->datatables->from('marqueetext');
         $this->datatables->edit_column('isEnable','$1','isEnable');
-        $this->datatables->edit_column('id', 'Edit | Delete', 'id');
+        $this->datatables->edit_column('id', 
+                                        '<a href="#" onclick="return edit_marquee_link($1,\'$2\')">Edit</a> | <a href="#" onclick="return delete_marquee_link($1)">Delete', 
+                                        'id,content');
         $json = $this->datatables->generate('UTF8');
         //  print_r($json);
-        echo $json;
+        echo str_replace(array("\n","\r"), array("<br/>",""), $json);
     }
 
 }

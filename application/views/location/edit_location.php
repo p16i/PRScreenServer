@@ -3,7 +3,7 @@
     $this->load->helper('form');
     ?>
 
-    <form method="post" action="http://10.0.100.74/PRScreenServer/index.php/admin/location/edit_location" enctype="multipart/form-data" id="edit_location_form">
+    <form method="post" action="" enctype="multipart/form-data" id="edit_location_form"><!--action is set from editResource.js-->
         <?= 'Room_Name : <br>' . form_input(array('name' => 'roomname', 'class' => 'input',  'style'=>'width:50%')) . '<br><br>'; ?>
         <img id="preview" height="150" width="150"/><br>
         Upload Picture for Location :<br>

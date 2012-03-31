@@ -1,5 +1,5 @@
-<div id="add_aboutfac" title="Add Information About Faculty" class="dialog">
-    <form method="post" id="aboutfac_form" action="http://10.0.100.74/PRScreenServer/index.php/admin/aboutfac/add_aboutfac" enctype="multipart/form-data">
+<div id="add_aboutfac" title="Add Information About Faculty" class="dialog"> 
+    <form method="post" id="aboutfac_form" enctype="multipart/form-data"><!--action is set from addResource.js-->
         Upload Picture for Information About Faculty :<br>
         <input type="file" name='image'/><br><br>
         <?php

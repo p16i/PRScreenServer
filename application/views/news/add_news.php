@@ -1,5 +1,5 @@
 <div id="add_news" title="Add News" class="dialog">
-    <form id="news_form">
+    <form id="news_form"><!--action is set from addResource.js-->
         <?php
         $this->load->helper('form');
         echo 'Headline : ' . form_input(array('name'=>'headline','class'=>'input')) . '<br>';

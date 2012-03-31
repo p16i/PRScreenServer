@@ -81,7 +81,7 @@ Class aboutfac extends CI_Controller {
         $this->datatables->edit_column('path','<img src="resources/aboutfac/$1" class="thumbnail" />', 'path');
         
         $json = $this->datatables->generate('UTF8');
-        echo $json;
+        echo str_replace(array("\n","\r"), array("<br/>",""), $json);
     }
 
 }

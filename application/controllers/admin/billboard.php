@@ -120,7 +120,8 @@ Class billboard extends CI_Controller {
         
         $json = $this->datatables->generate('UTF8');
         //print_r($json);
-        echo $json;
+        //str_replace("\r", "",$json);
+        echo str_replace(array("\n","\r"), array("<br/>",""), $json);
     }
 
 }
