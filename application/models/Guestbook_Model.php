@@ -15,14 +15,8 @@ class Guestbook_Model extends CI_Model{
     
   
     
-    function insert($row){
-        $this->db->query('INSERT INTO guestbook 
-                          VALUES    (null,
-                                    "'.$row['content'].'",
-                                    "'.$row['soundPath'].'",
-                                    "'.$row['imagePath'].'", 
-                                    '.$row['datetime'].')'
-                        );
+    function insert($data){
+        $this->db->insert('guestbook',$data);
     }
     
      function delete($id){

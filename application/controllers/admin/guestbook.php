@@ -9,7 +9,8 @@ Class guestbook extends CI_Controller {
         $this->load->model("Guestbook_Model");
     }
 
-//    function index() {
+    function index() {
+        $this->load->view('guestbook/index.php');
 //        if (!isset($_POST['option'])) {
 //            $result = $this->Guestbook_Model->get_guestbook();
 //            $data['result'] = $result;
@@ -19,15 +20,27 @@ Class guestbook extends CI_Controller {
 //        } elseif ($_POST['option'] == 'Delete') { //$_POST => id
 //            $this->delete_guestbook($_POST['id']);
 //        }
-//    }
+    }
 
     function add_guestbook() {//$_POST => content, soundPath, imagePath, datetime
         ////////////////////////////////////////
-        $_POST['_datetime'] = mdate('%Y-%m-%d %H:%i:%s', time());
-        if(!isset($_POST['soundPath'])) $_POST['soundPath'] = 'Null';
-        if(!isset($_POST['imagePath'])) $_POST['imagePath'] = 'Null';
+        $now = mdate('%Y-%m-%d %H:%i:%s', time());
+        if (!isset($_POST['soundPath']))
+            $_POST['soundPath'] = 'Null';
+        if (!isset($_POST['imagePath']))
+            $_POST['imagePath'] = 'Null';
         $this->load->model("Guestbook_Model");
-        $this->Guestbook_Model->insert($_POST);
+        if (isset($_POST["name"])) {
+            $data = array("name" => $this->input->post("name"),
+                "content" => $this->input->post("content"),
+                "_datetime" => $now,
+                "imagepath" => $this->input->post("imagepath")
+            );
+
+            $this->Guestbook_Model->insert($data);
+        }
+
+        $this->load->view("guestbook/thankyou.php");
     }
 
     function delete_guestbook($id) {
@@ -51,7 +64,17 @@ Class guestbook extends CI_Controller {
         $this->datatables->edit_column('id', 'Edit | Delete', 'id');
         $json = $this->datatables->generate('UTF8');
         //  print_r($json);
-        echo str_replace(array("\n","\r"), array("<br/>",""), $json);
+        echo str_replace(array("\n", "\r"), array("<br/>", ""), $json);
+    }
+
+    function getAvatar($name) {
+        $temp = "http://followcost.com/";
+        $url = curl_init($temp . $name . ".json");
+        curl_setopt($url, CURLOPT_HEADER, false);
+        curl_setopt($url, CURLOPT_RETURNTRANSFER, true);
+        $data = curl_exec($url);
+        echo $data;
+        curl_close($url);
     }
 
 }

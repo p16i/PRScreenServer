@@ -5,7 +5,7 @@
 
 
 $(document).ready(function(){
-    //var base_url = 'http://10.0.100.191/PRScreenserver/';
+    var base_url = 'http://localhost/PRScreenserver/';
     //base_url is defined on main.php in script code
     
      /// Add Billboard
