@@ -3,8 +3,8 @@
             <input type="hidden" id="news_id" name="id"/> <!--for store choosen id-->
         <?php
             //echo form_open('admin/news/edit_news');
-            echo 'Headline : '.form_input('headline','','id="news_headline"').'<br>';
-            echo 'Content : '.form_textarea('content','','id="news_content"').'<br>';
+            echo 'Headline : '.form_input('headline','','id="edit_news_headline"').'<br>';
+            echo 'Content : '.form_textarea('content','','id="edit_news_content"').'<br>';
             
             $query = $this->db->get('news_catagory');
             $catagory_result = $query->result();

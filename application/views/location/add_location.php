@@ -4,9 +4,9 @@
     ?>
 
     <form method="post" action="" enctype="multipart/form-data" id="location_form"><!--action is set from addResource.js-->
-        <?= 'Room_Name : <br>' . form_input(array('name' => 'roomname', 'class' => 'input',  'style'=>'width:50%')) . '<br><br>'; ?>
+        <?= 'Room_Name : <br>' . form_input(array('id'=>'add_location_roomname','name' => 'roomname', 'class' => 'input',  'style'=>'width:50%')) . '<br><br>'; ?>
         Upload Picture for Location :<br>
-        <input type="file" name='image'/><br><br>
+        <input id="add_location_image" type="file" name='image'/><br><br>
         <?php
         $options = array();
         for($i=1;$i<=6;$i++){

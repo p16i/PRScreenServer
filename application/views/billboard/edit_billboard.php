@@ -6,10 +6,10 @@
             Change Picture for Billboard :<br>
             <input type="file" name='image'/><br>
             <input type="hidden" name="id" id="bill_id"/>
-            <input type="hidden" name="oldpath" id="bill_oldpath" value="asads"/> <!-- use in case user doesn't change picture -->
+            <input type="hidden" name="oldpath" id="bill_oldpath"/> <!-- use in case user doesn't change picture -->
         <?php
             $this->load->helper('form');
-            echo 'Content : <br>'.form_textarea(array('name'=>'content','class'=>'input','id'=>'textarea')).'<br><br>';
+            echo 'Content : <br>'.form_textarea(array('name'=>'content','class'=>'input','id'=>'edit_billboard_content')).'<br><br>';
             $options = array('Null'=>'none');
             $result = $this->db->get('news');
             $result = $result->result();

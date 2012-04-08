@@ -51,7 +51,6 @@ Class billboard extends CI_Controller {
                 if (!isset($_POST['newsID']))
                     $_POST['newsID'] = null;
                 $this->Billboard_Model->insert($_POST);
-                $_POST['option'] = null;
                 redirect(base_url()."welcome#billboard_page",'refresh');
             }else
                 echo "image isn't upload";

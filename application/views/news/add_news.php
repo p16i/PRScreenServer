@@ -2,8 +2,8 @@
     <form id="news_form"><!--action is set from addResource.js-->
         <?php
         $this->load->helper('form');
-        echo 'Headline : ' . form_input(array('name'=>'headline','class'=>'input')) . '<br>';
-        echo 'Content : ' . form_textarea(array('name'=>'content','class'=>'input')) . '<br>';
+        echo 'Headline : ' . form_input(array('id'=>'add_news_headline','name'=>'headline','class'=>'input')) . '<br>';
+        echo 'Content : ' . form_textarea(array('id'=>'add_news_content','name'=>'content','class'=>'input')) . '<br>';
 
         $result = $this->db->get('news_catagory');
         $result = $result->result();

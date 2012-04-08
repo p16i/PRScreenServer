@@ -12,7 +12,7 @@ function edit_billboard_link(id){
         content = data['Content'].replace(/\<br\/>/g, "\n");//replace all of <br/> to \n to show text in textarea
         image = data['ImagePath'];
         $("#image").attr("src",base_url+'resources/billboard/'+image);
-        $("#textarea").attr("value",content);
+        $("#edit_billboard_content").attr("value",content);
         $("#bill_id").attr("value",data['ID']);
         $("#bill_oldpath").attr("value",data['ImagePath']);
         if(data['NewsID']==null)data['NewsID']='Null';
@@ -27,8 +27,14 @@ function edit_billboard_link(id){
             height:500,
             buttons: {
                 Edit: function() {
-                    $("#edit_billboard_form").attr("action",base_url+"admin/billboard/edit_billboard");
-                    $("#edit_billboard_form").submit();
+                    //alert($("#edit_billboard_content").attr("value"));
+                    if($("#edit_billboard_content").attr("value")==""){
+                        alert("Please enter content of billboard");
+                    }else{
+                        $("#edit_billboard_form").attr("action",base_url+"admin/billboard/edit_billboard");
+                        $("#edit_billboard_form").submit();
+                    }
+                    
               
                 }
             }            
@@ -62,8 +68,8 @@ function edit_news_link(id,headline,content,catagoryid){
     //alert(id+" : "+headline+" : "+content+" : "+catagoryid);
     content = content.replace(/\<br\/>/g, "\n");  //replace all of <br/> to \n to show text in textarea
     $("#news_id").attr("value", id);
-    $("#news_headline").attr("value", headline);
-    $("#news_content").attr("value", content);
+    $("#edit_news_headline").attr("value", headline);
+    $("#edit_news_content").attr("value", content);
     $("#news_catagory option[value="+catagoryid+"]").attr("selected", "selected");
     //alert(id);
     
@@ -73,29 +79,36 @@ function edit_news_link(id,headline,content,catagoryid){
             height:500,
             buttons: {
                 Edit: function() {
-                  var form_data = $("#edit_news_form").serialize();
-                  //alert(form_data);
-                  //alert($("#news_content").attr("value"));
-                    $.ajax(
-                    {
-                        type: "POST",
-                        url: base_url+"admin/news/edit_news",
-                        data: form_data,
-                        dataType: "json",
-                        success: function(data){
-                            //var c = $('#news_content').attr("value");
-                            //$('#news_content').attr("value",c.replace('\n','<br/>'));
-                            $('#news_table').dataTable().fnDraw();
-                            $("#edit_news").dialog('close');
-                        
-                        // location.reload();
-                        },
-                        error: function(data){
-                            alert("error");
-                            //alert(data);
+                   if($("#edit_news_headline").attr("value")==""){
+                      alert("Please enter news headline");
+                  }else if($("#edit_news_content").attr("value")==""){
+                      alert("Please enter content of news");
+                  }else{
+                      var form_data = $("#edit_news_form").serialize();
+                        $.ajax(
+                        {
+                            type: "POST",
+                            url: base_url+"admin/news/edit_news",
+                            data: form_data,
+                            dataType: "json",
+                            success: function(data){
+                                //var c = $('#news_content').attr("value");
+                                //$('#news_content').attr("value",c.replace('\n','<br/>'));
+                                $('#news_table').dataTable().fnDraw();
+                                $("#edit_news").dialog('close');
+
+                            // location.reload();
+                            },
+                            error: function(data){
+                                alert("error");
+                                //alert(data);
+                            }
                         }
-                    }
-                    );                   
+                        );    
+                  }
+                    
+                    
+                                 
                 }
             }
                         
@@ -146,8 +159,13 @@ function edit_location_link(id,roomname,imagepath,catagoryid,floor){
         height:500,
         buttons: {
             Edit: function() {
-                $("#edit_location_form").attr("action",base_url+"admin/location/edit_location");
-                $("#edit_location_form").submit();
+                
+                if($("#edit_location_roomname").attr("value")==""){
+                        alert("Please enter room name");                      
+                }else{
+                    $("#edit_location_form").attr("action",base_url+"admin/location/edit_location");
+                    $("#edit_location_form").submit();
+                }
             }
         }
 

@@ -4,7 +4,7 @@
     ?>
 
     <form method="post" action="" enctype="multipart/form-data" id="edit_location_form"><!--action is set from editResource.js-->
-        <?= 'Room_Name : <br>' . form_input(array('name' => 'roomname', 'class' => 'input',  'style'=>'width:50%')) . '<br><br>'; ?>
+        <?= 'Room_Name : <br>' . form_input(array('id'=>'edit_location_roomname','name' => 'roomname', 'class' => 'input',  'style'=>'width:50%')) . '<br><br>'; ?>
         <img id="preview" height="150" width="150"/><br>
         Upload Picture for Location :<br>
         <input type="file" name='image'/><br><br>

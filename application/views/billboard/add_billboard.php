@@ -2,11 +2,11 @@
         
         <form method="post"   id="billboard_form" action="" enctype="multipart/form-data"><!--action is set from addResource.js-->
             Upload Picture for Billboard :<br>
-            <input type="file" name='image'/><br><br>
+            <input id="add_billboard_image" type="file" name='image' /><br><br>
         <?php
             //echo form_upload('image','onmouseover="test()"').'<br><br>';
             $this->load->helper('form');
-            echo 'Content : <br>'.form_textarea(array('name'=>'content','class'=>'input')).'<br><br>';
+            echo 'Content : <br>'.form_textarea(array('id'=>'add_billboard_content','name'=>'content','class'=>'input')).'<br><br>';
             $options = array('Null'=>'none');
             $result = $this->db->get('news');
             $result = $result->result();
