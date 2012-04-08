@@ -217,9 +217,15 @@ function edit_aboutfac_link(id,desc,imagepath,catagoryid){
        width:500,
        height:500,
        buttons: {
-           Edit: function() {//
-               $("#edit_aboutfac_form").attr("action",base_url+"admin/aboutfac/edit_aboutfac");
-               $("#edit_aboutfac_form").submit();
+           Edit: function() {
+               //alert("aaaa");
+               if($("#edit_aboutfac_desc").attr("value")==""){
+                   alert("Please enter description");
+                   //string.split(' ').join('');
+               }else{
+                   $("#edit_aboutfac_form").attr("action",base_url+"admin/aboutfac/edit_aboutfac");
+                   $("#edit_aboutfac_form").submit();
+               }
            }
        }
     });
@@ -261,24 +267,30 @@ function edit_marquee_link(id,content){
             height:500,
             buttons: {
                 Edit: function() {
-                    var form_data = $("#edit_marquee_form").serialize();
-                    $.ajax(
-                    {
-                        type: "POST",
-                        url: base_url+"admin/marqueetext/edit_marqueetext",
-                        data: form_data,
-                        dataType: "json",
-                        success: function(data){
-                            $('#marqueetext_table').dataTable().fnDraw();
-                            $("#edit_marquee").dialog('close');
-                        
-                        // location.reload();
-                        },
-                        error: function(data){
-                            alert('error');
+                    
+                    if($("#edit_marquee_content").attr("value")==""){
+                                alert("Please enter content of marquee text");
+                    }else{
+                    
+                        var form_data = $("#edit_marquee_form").serialize();
+                        $.ajax(
+                        {
+                            type: "POST",
+                            url: base_url+"admin/marqueetext/edit_marqueetext",
+                            data: form_data,
+                            dataType: "json",
+                            success: function(data){
+                                $('#marqueetext_table').dataTable().fnDraw();
+                                $("#edit_marquee").dialog('close');
+
+                            // location.reload();
+                            },
+                            error: function(data){
+                                alert('error');
+                            }
                         }
+                        );
                     }
-                    );
                                     
                 }
             }

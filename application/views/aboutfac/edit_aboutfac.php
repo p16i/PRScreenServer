@@ -6,7 +6,7 @@
         <input type="file" name='image'/><br><br>
         <?php
             $this->load->helper('form');
-            echo 'Description : <br>'.form_textarea(array('name'=>'description','class'=>'input')).'<br><br>';
+            echo 'Description : <br>'.form_textarea(array('id'=>'edit_aboutfac_desc','name'=>'description','class'=>'input')).'<br><br>';
             $result = $this->db->get('aboutfac_catagory');
             $result = $result->result();
             foreach($result as $row){ //$result is result from catagory

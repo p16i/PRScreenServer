@@ -128,9 +128,18 @@ $(document).ready(function(){
             height:500,
             buttons: {
                 Add: function() {
-                    $("#aboutfac_form").attr("action",base_url+"admin/aboutfac/add_aboutfac");
-                    $("#aboutfac_form").submit();
+                    //alert("aaa");
+                    if($("#add_aboutfac_image").attr("value")==""){
+                        alert("Please choose image to be uploaded");
+                    }else if($("#add_aboutfac_desc").attr("value")==""){
+                        alert("Please enter description");
+                        //string.split(' ').join('');
+                    }else{
                     
+                        $("#aboutfac_form").attr("action",base_url+"admin/aboutfac/add_aboutfac");
+                        $("#aboutfac_form").submit();
+                    
+                    }
                                     
                 }
             }
@@ -160,8 +169,14 @@ $(document).ready(function(){
                         data: form_data,
                         dataType: "json",
                         success: function(data){
-                            $('#marqueetext_table').dataTable().fnDraw();
-                            $("#add_marquee").dialog('close');
+                            
+                            if($("#add_marquee_content").attr("value")==""){
+                                alert("Please enter content of marquee text");
+                            }else{
+                                $('#marqueetext_table').dataTable().fnDraw();
+                                $("#add_marquee").dialog('close');
+                            }
+                            
                         
                         // location.reload();
                         }
