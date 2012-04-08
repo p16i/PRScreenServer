@@ -1,7 +1,9 @@
 <div id="add_aboutfac" title="Add Information About Faculty" class="dialog"> 
     <form method="post" id="aboutfac_form" enctype="multipart/form-data"><!--action is set from addResource.js-->
-        Upload Picture for Information About Faculty :<br>
-        <input id="add_aboutfac_image" type="file" name='image'/><br><br>
+        Picture for Information About Faculty <br>
+        <img id="add_aboutfac_image_prev" height="200" width="150"/><br>
+        Upload Picture :<br/>
+        <input id="add_aboutfac_image" type="file" name='image' onchange="readURL(this)"/><br><br>
         <?php
             $this->load->helper('form');
             echo 'Description : <br>'.form_textarea(array('id'=>'add_aboutfac_desc','name'=>'description','class'=>'input')).'<br><br>';

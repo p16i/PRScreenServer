@@ -11,7 +11,7 @@ function edit_billboard_link(id){
     $.getJSON(base_url+'admin/billboard/get_billboard?id='+id, function(data){
         content = data['Content'].replace(/\<br\/>/g, "\n");//replace all of <br/> to \n to show text in textarea
         image = data['ImagePath'];
-        $("#image").attr("src",base_url+'resources/billboard/'+image);
+        $("#edit_billboard_image_prev").attr("src",base_url+'resources/billboard/'+image);
         $("#edit_billboard_content").attr("value",content);
         $("#bill_id").attr("value",data['ID']);
         $("#bill_oldpath").attr("value",data['ImagePath']);
@@ -147,7 +147,7 @@ function edit_location_link(id,roomname,imagepath,catagoryid,floor){
     //alert("id:"+id+" roomname:"+roomname+" imagepath : "+imagepath+" cID:"+catagoryid+" floor:"+floor);
     
     $("input[name^='roomname']").attr("value",roomname);
-    $("#preview").attr("src",base_url+'resources/location/'+imagepath);
+    $("#edit_location_image_prev").attr("src",base_url+'resources/location/'+imagepath);
     $("input[name^='oldpath']").attr("value",imagepath);
     $("input[name^='id']").attr("value",id);
     $("select[name^='floor'] option[value="+floor+"]").attr('selected', 'selected');
@@ -206,7 +206,7 @@ function delete_location_link(id){
 function edit_aboutfac_link(id,desc,imagepath,catagoryid){
     //alert(id);alert(desc);alert(imagepath);alert(catagoryID);
     desc = desc.replace(/\<br\/>/g, "\n");  //replace all of <br/> to \n to show text in textarea
-    $("#aboutfac_preview").attr("src",base_url+'resources/aboutfac/'+imagepath);
+    $("#edit_aboutfac_image_prev").attr("src",base_url+'resources/aboutfac/'+imagepath);
     $("input[name^='oldpath']").attr("value",imagepath);
     $("input[name^='id']").attr("value",id);
     $("textarea[name^='description']").attr("value",desc);

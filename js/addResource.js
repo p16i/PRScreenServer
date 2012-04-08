@@ -4,6 +4,8 @@
  */
 
 
+
+
 $(document).ready(function(){
     //var base_url = 'http://10.0.100.191/PRScreenserver/';
     //base_url is defined on main.php in script code
@@ -11,37 +13,41 @@ $(document).ready(function(){
      /// Add Billboard
         $("#add_billboard_link").click(function(e){   
             //$("#billboard_form").attr("action",base_url+"admin/billboard/add_billboard");
-        $( "#add_billboard" ).dialog({
-            modal:true,
-            width:500,
-            height:500,
-            buttons: {
-                Add: function() {
-                    
-                    //check that content and image are not empty.
-                    //var x = $("#add_billboard_content").attr("value");
-                    //alert(x);
-                    if($("#add_billboard_image").attr("value")==""){
-                        alert("Please choose image to be uploaded");
-                    }else if($("#add_billboard_content").attr("value")==""){
-                        alert("Please enter content of billboard");
-                        //string.split(' ').join('');
-                    }else{
-                        //add action url to form
-                        //alert("OK");
-                        $("#billboard_form").attr("action",base_url+"admin/billboard/add_billboard"); //base_url is defined on main.php in script code    
-                        $("#billboard_form").submit();
+            $("#add_billboard_image_prev").attr("src",base_url+"resources/preview.png");
+            $( "#add_billboard" ).dialog({
+                modal:true,
+                width:500,
+                height:500,
+                buttons: {
+                    Add: function() {
+
+                        //check that content and image are not empty.
+                        //var x = $("#add_billboard_content").attr("value");
+                        //alert(x);
+                        if($("#add_billboard_image").attr("value")==""){
+                            alert("Please choose image to be uploaded");
+                        }else if($("#add_billboard_content").attr("value")==""){
+                            alert("Please enter content of billboard");
+                            //string.split(' ').join('');
+                        }else{
+                            //add action url to form
+                            //alert("OK");
+                            $("#billboard_form").attr("action",base_url+"admin/billboard/add_billboard"); //base_url is defined on main.php in script code    
+                            $("#billboard_form").submit();
+                        }
+
                     }
-                    
                 }
-            }
-                        
-                        
-        });
-        //   e.preventDefault(); 
-      
-        return false;
+
+
+            });
+            //   e.preventDefault(); 
+
+            return false;
     });
+    
+
+
     
     
     
@@ -92,6 +98,7 @@ $(document).ready(function(){
     
     /// Add Location 
     $("#add_location_link").click(function(e){   
+        $("#add_location_image_prev").attr("src",base_url+"resources/preview.png");
         $( "#add_location" ).dialog({
             modal:true,
             width:500,
@@ -122,6 +129,7 @@ $(document).ready(function(){
     
     /// Add About Fac
     $("#add_about_fac_link").click(function(e){   
+        $("#add_aboutfac_image_prev").attr("src",base_url+"resources/preview.png");
         $( "#add_aboutfac" ).dialog({
             modal:true,
             width:500,
