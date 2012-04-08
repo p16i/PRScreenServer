@@ -1,8 +1,9 @@
 <div id="add_billboard" title="Add Billboard" class="dialog">
         
         <form method="post"   id="billboard_form" action="" enctype="multipart/form-data"><!--action is set from addResource.js-->
-            Upload Picture for Billboard :<br>
-            <input id="add_billboard_image" type="file" name='image' /><br><br>
+            Upload Picture for Billboard :<br/><br/>
+            <img id="add_billboard_image_prev" height="200" width="150" /><br/>
+            <input id="add_billboard_image" type="file" name='image' onchange="readURL(this)" /><br><br>
         <?php
             //echo form_upload('image','onmouseover="test()"').'<br><br>';
             $this->load->helper('form');

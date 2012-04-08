@@ -6,13 +6,13 @@
         <?php $this->load->view('header'); ?>
         <script src="<?php echo base_url(); ?>js/editResource.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/fetchDataFromDataTable.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>js/addResouce.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>js/addResource.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>js/previewImage.js" type="text/javascript"></script>
         
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url(); ?>styles/dataTable.css" />
         
         <script type="text/javascript">
-            
-            var base_url = 'http://10.0.100.191/PRScreenServer/' ;
+            var base_url = 'http://192.168.1.36/PRScreenServer/' ;
         </script>
     </head>
     <body>

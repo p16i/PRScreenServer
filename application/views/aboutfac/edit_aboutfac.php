@@ -1,12 +1,12 @@
 <div id="edit_aboutfac" title="Edit Information About Faculty" class="dialog">
     <form method="post" id="edit_aboutfac_form" action="" enctype="multipart/form-data"><!--action is set from editResource.js-->
         Current Picture for Information About Faculty :<br>
-        <img id="aboutfac_preview" height="150" width="150"/><br><br>
+        <img id="edit_aboutfac_image_prev" height="150" width="150"/><br>
         Change Picture for Information About Faculty :<br>
-        <input type="file" name='image'/><br><br>
+        <input id="edit_aboutfac_image" type="file" name='image' onchange="readURL(this)"/><br><br>
         <?php
             $this->load->helper('form');
-            echo 'Description : <br>'.form_textarea(array('name'=>'description','class'=>'input')).'<br><br>';
+            echo 'Description : <br>'.form_textarea(array('id'=>'edit_aboutfac_desc','name'=>'description','class'=>'input')).'<br><br>';
             $result = $this->db->get('aboutfac_catagory');
             $result = $result->result();
             foreach($result as $row){ //$result is result from catagory
