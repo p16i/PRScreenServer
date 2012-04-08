@@ -52,7 +52,7 @@ $(document).ready(function(){
             width:500,
             height:500,
             buttons: {
-                Add: function() {
+                Add: function() {//
                   if($("#add_news_headline").attr("value")==""){
                       alert("Please enter news headline");
                   }else if($("#add_news_content").attr("value")==""){

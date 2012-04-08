@@ -17,7 +17,7 @@
                 $options[$row->ID] = $row->Headline;
             }
             echo 'Choose News to Link With : <br>'.form_dropdown('newsID',$options,'Null','id=dropdown');
-            form_close();
+            form_close();//
         ?>
         </form>
     </div>

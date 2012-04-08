@@ -10,7 +10,7 @@
         $options = array();
         foreach ($result as $row) {
             $options[$row->ID] = $row->Name;
-        }
+        }//
         echo 'Catagory : ' . form_dropdown('catagoryID', $options, '1') . '<br>';
         //echo 'Marquee Text : ' . form_checkbox('marquee', 'true', FALSE) . '<br>';
         ?>

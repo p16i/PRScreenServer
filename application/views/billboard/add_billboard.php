@@ -13,7 +13,7 @@
             foreach($result as $row){ //$result is result from catagory
                 $options[$row->ID] = $row->Headline;
             }
-           
+           //
             echo 'Choose News to Link With : <br>'.form_dropdown('newsID',$options,'Null');
         ?>
         </form>

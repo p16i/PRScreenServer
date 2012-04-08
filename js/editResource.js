@@ -217,7 +217,7 @@ function edit_aboutfac_link(id,desc,imagepath,catagoryid){
        width:500,
        height:500,
        buttons: {
-           Edit: function() {
+           Edit: function() {//
                $("#edit_aboutfac_form").attr("action",base_url+"admin/aboutfac/edit_aboutfac");
                $("#edit_aboutfac_form").submit();
            }

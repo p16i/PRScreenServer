@@ -19,7 +19,7 @@
         $options = array();
         foreach ($result as $row) { //$result is result from catagory
             $options[$row->ID] = $row->Name;
-        }
+        }//
 
         echo 'Catagory  : ' . form_dropdown('catagoryID', $options).'</pre>';
         //echo '<br><br>' . form_submit('', 'Submit');
