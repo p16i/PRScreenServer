@@ -27,28 +27,45 @@ Class gallery extends CI_Controller {
 
     function add_album() { //$_POST => name, catagoryID, cover<integer => index of picture that is selected to be cover pic>
         if ($_POST['name'] != '') {
-            if ($_FILES['images']['name'][0] != '') { //if at least one image are uploaded
-                $path = 'resources/album/' . $_POST['name'];
-                if (file_exists($path))
-                    echo 'Album name already existed';
-                else {
-                    $this->add_file();
+            /// if ($_FILES['images']['name'][0] != '') { //if at least one image are uploaded
+            $path = realpath(".") . '/resources/gallery/' . $_POST['name'];
+            if (file_exists($path))
+                echo 'Album name already existed';
+            else {
+                // $this->add_file();          
+               
+                mkdir($path);
 
-                    $count = count(get_filenames($path));
-                    $_POST['quantity'] = $count;
+                /// Upload Cover
+               
+                $cover = 'cover';
+                $config['upload_path'] = $path;
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = '0';
+                $config['max_width'] = '0';
+                $config['max_height'] = '0';
+                
+                $this->load->library('upload', $config);
+                $this->upload->do_upload('cover');
 
-                    $_POST['cover'] = 0;
-                    $_POST['cover'] = $_FILES['images']['name'][$_POST['cover']]; //$_POST['cover'] that come from submit form
-                    //is index of image that is uploaded and selected
-                    //as cover thumbnail
-                    //$image_data = $this->upload->data();
+                $image_data = $this->upload->data();
+                $filename= $image_data['file_name'];
+                // $count = count(get_filenames($path));
+                $_POST['quantity'] = 0;
+                $_POST['cover'] = base_url()."resources/gallery/".$_POST['name']."/".$filename; //$_POST['cover'] that come from submit form
+                //is index of image that is uploaded and selected
+                //as cover thumbnail
+                //$image_data = $this->upload->data();
 
 
-                    $this->Album_Model->insert($_POST);
-                }
-            }else
-                echo 'no image uploaded';
-        }else {
+
+                $this->Album_Model->insert($_POST);
+            }
+        }
+        //   }else
+        //     echo 'no image uploaded';
+        //}
+        else {
             echo 'Album Name is empty';
         }
         //redirect(base_url().'index.php/admin/album/');
@@ -104,7 +121,6 @@ Class gallery extends CI_Controller {
 
         //redirect(base_url().'index.php/admin/album/');
     }
-
 
 }
 

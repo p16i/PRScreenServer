@@ -10,40 +10,66 @@ $(document).ready(function(){
     var base_url = 'http://localhost/PRScreenserver/';
     //base_url is defined on main.php in script code
     
-     /// Add Billboard
-        $("#add_billboard_link").click(function(e){   
-            //$("#billboard_form").attr("action",base_url+"admin/billboard/add_billboard");
-            $("#add_billboard_image_prev").attr("src",base_url+"resources/preview.png");
-            $( "#add_billboard" ).dialog({
-                modal:true,
-                width:500,
-                height:500,
-                buttons: {
-                    Add: function() {
+    $("#add_gallery_link").click(function(e){   
+        //$("#billboard_form").attr("action",base_url+"admin/billboard/add_billboard");
+      
+        $( "#add_gallery" ).dialog({
+            modal:true,
+            width:500,
+            height:500,
+            buttons: {
+                Add: function() {
+                    $("#gallery_form").attr("action",base_url+"admin/gallery/add_album"); //base_url is defined on main.php in script code    
+                    $("#gallery_form").submit();
+                 
 
-                        //check that content and image are not empty.
-                        //var x = $("#add_billboard_content").attr("value");
-                        //alert(x);
-                        if($("#add_billboard_image").attr("value")==""){
-                            alert("Please choose image to be uploaded");
-                        }else if($("#add_billboard_content").attr("value")==""){
-                            alert("Please enter content of billboard");
-                            //string.split(' ').join('');
-                        }else{
-                            //add action url to form
-                            //alert("OK");
-                            $("#billboard_form").attr("action",base_url+"admin/billboard/add_billboard"); //base_url is defined on main.php in script code    
-                            $("#billboard_form").submit();
-                        }
-
-                    }
                 }
+            }
 
 
-            });
-            //   e.preventDefault(); 
+        });
+        //   e.preventDefault(); 
 
-            return false;
+        return false;
+    });
+    
+    
+    
+    
+    /// Add Billboard
+    $("#add_billboard_link").click(function(e){   
+        //$("#billboard_form").attr("action",base_url+"admin/billboard/add_billboard");
+        $("#add_billboard_image_prev").attr("src",base_url+"resources/preview.png");
+        $( "#add_billboard" ).dialog({
+            modal:true,
+            width:500,
+            height:500,
+            buttons: {
+                Add: function() {
+
+                    //check that content and image are not empty.
+                    //var x = $("#add_billboard_content").attr("value");
+                    //alert(x);
+                    if($("#add_billboard_image").attr("value")==""){
+                        alert("Please choose image to be uploaded");
+                    }else if($("#add_billboard_content").attr("value")==""){
+                        alert("Please enter content of billboard");
+                    //string.split(' ').join('');
+                    }else{
+                        //add action url to form
+                        //alert("OK");
+                        $("#billboard_form").attr("action",base_url+"admin/billboard/add_billboard"); //base_url is defined on main.php in script code    
+                        $("#billboard_form").submit();
+                    }
+
+                }
+            }
+
+
+        });
+        //   e.preventDefault(); 
+
+        return false;
     });
     
 
@@ -52,20 +78,20 @@ $(document).ready(function(){
     
     
     /// Add News
-        $("#add_news_link").click(function(e){   
+    $("#add_news_link").click(function(e){   
         $( "#add_news" ).dialog({
             modal:true,
             width:500,
             height:500,
             buttons: {
                 Add: function() {//
-                  if($("#add_news_headline").attr("value")==""){
-                      alert("Please enter news headline");
-                  }else if($("#add_news_content").attr("value")==""){
-                      alert("Please enter content of news");
-                  }else{
-                      var form_data = $("#news_form").serialize();
-                      //alert(form_data);
+                    if($("#add_news_headline").attr("value")==""){
+                        alert("Please enter news headline");
+                    }else if($("#add_news_content").attr("value")==""){
+                        alert("Please enter content of news");
+                    }else{
+                        var form_data = $("#news_form").serialize();
+                        //alert(form_data);
                         $.ajax(
                         {
                             type: "POST",
@@ -81,7 +107,7 @@ $(document).ready(function(){
                             }
                         }
                         ); 
-                  }
+                    }
                     
                                     
                 }
@@ -110,7 +136,7 @@ $(document).ready(function(){
                         alert("Please enter room name");                      
                     }else if($("#add_location_image").attr("value")==""){
                         alert("Please choose image to be uploaded");
-                        //string.split(' ').join('');
+                    //string.split(' ').join('');
                     }else{
                         $("#location_form").attr("action",base_url+"admin/location/add_location");
                         $("#location_form").submit();
@@ -141,7 +167,7 @@ $(document).ready(function(){
                         alert("Please choose image to be uploaded");
                     }else if($("#add_aboutfac_desc").attr("value")==""){
                         alert("Please enter description");
-                        //string.split(' ').join('');
+                    //string.split(' ').join('');
                     }else{
                     
                         $("#aboutfac_form").attr("action",base_url+"admin/aboutfac/add_aboutfac");

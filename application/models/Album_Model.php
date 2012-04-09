@@ -8,7 +8,7 @@ class Album_Model extends CI_Model{
     
     function __construct(){
             parent::__construct();
-            $this->load->helper(array('file'));
+            $this->load->helper('file');
             
         }
     

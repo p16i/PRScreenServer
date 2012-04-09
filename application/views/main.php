@@ -99,6 +99,9 @@
                 <div class="page" id="gallery_page">
                     <div class="header_1">
                         Manage Gallery Content
+                          <a href="#" id="add_gallery_link">
+                            <img src="<?php echo base_url(); ?>/styles/images/add-icon.png" class="add_icon"/>    
+                        </a>
                     </div>
                     <?php $this->load->view('gallery/gallery_table') ?>
                 </div>
@@ -197,6 +200,7 @@
 </div>
 
 <?php
+$this->load->view('gallery/add_gallery');
 $this->load->view('billboard/add_billboard');
 $this->load->view('billboard/edit_billboard');
 $this->load->view('news/add_news');

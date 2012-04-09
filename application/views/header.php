@@ -5,9 +5,19 @@
 <script src="<?php echo base_url(); ?>js/jquery.ui.dialog.js" type="text/javascript" ></script>
 <script src="<?php echo base_url(); ?>js/jquery.ui.widget.js" type="text/javascript" ></script>
 <script src="<?php echo base_url(); ?>js/jquery.ui.position.js" type="text/javascript" ></script>
+<script src="<?php echo base_url(); ?>js/jquery.ui.core.js" type="text/javascript" ></script>
+<script src="<?php echo base_url(); ?>js/jquery.ui.button.js" type="text/javascript" ></script>
+
 
 <script src="<?php echo base_url(); ?>js/jquery.dataTables.js" type="text/javascript"></script>
+<script type="text/javascript">
 
+    $(function(){
+       $("input:button").button(); 
+    });
+
+
+</script>
 
 <script src="<?php echo base_url(); ?>js/menuselect.js" type="text/javascript"></script>
 
