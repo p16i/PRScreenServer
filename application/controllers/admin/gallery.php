@@ -33,26 +33,26 @@ Class gallery extends CI_Controller {
                 echo 'Album name already existed';
             else {
                 // $this->add_file();          
-               
+
                 mkdir($path);
 
                 /// Upload Cover
-               
+
                 $cover = 'cover';
                 $config['upload_path'] = $path;
                 $config['allowed_types'] = 'gif|jpg|png';
                 $config['max_size'] = '0';
                 $config['max_width'] = '0';
                 $config['max_height'] = '0';
-                
+
                 $this->load->library('upload', $config);
                 $this->upload->do_upload('cover');
 
                 $image_data = $this->upload->data();
-                $filename= $image_data['file_name'];
+                $filename = $image_data['file_name'];
                 // $count = count(get_filenames($path));
                 $_POST['quantity'] = 0;
-                $_POST['cover'] = base_url()."resources/gallery/".$_POST['name']."/".$filename; //$_POST['cover'] that come from submit form
+                $_POST['cover'] = base_url() . "resources/gallery/" . $_POST['name'] . "/" . $filename; //$_POST['cover'] that come from submit form
                 //is index of image that is uploaded and selected
                 //as cover thumbnail
                 //$image_data = $this->upload->data();
@@ -120,6 +120,38 @@ Class gallery extends CI_Controller {
 
 
         //redirect(base_url().'index.php/admin/album/');
+    }
+
+    function getImageInAlbum($album_name) {
+
+        /// Real Path
+        $real_path = realpath(".") . "/resources/gallery/" . $album_name;
+        $url_path = base_url()."/resources/gallery/".$album_name;
+
+        /// Images array
+        $images = array();
+        
+        /// Traverse In album's directory
+        $dh = opendir($real_path);
+        while (false !== ($filename = readdir($dh))) {
+            // $files[] = $filename;
+            if ($filename != "." && $filename != "..") {
+               // echo $url_path."/".$filename."<br>";
+                $image = array(
+                    'filename'=>$filename,
+                    'path'=>$url_path."/".$filename
+                );
+                $images[] = $image;
+            }
+        }
+        
+        $result = array(
+            'album_name'=>$album_name,
+            'images'=>$images
+        );
+        
+        /// Return JSON encode
+        echo json_encode($result);
     }
 
 }

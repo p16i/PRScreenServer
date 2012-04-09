@@ -8,11 +8,13 @@
         <script src="<?php echo base_url(); ?>js/fetchDataFromDataTable.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/addResource.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>js/previewImage.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>js/fileuploader.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>js/AlbumUploader.js" type="text/javascript"></script>
         
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url(); ?>styles/dataTable.css" />
-        
+        <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url(); ?>styles/fileuploader/fileuploader.css" />
         <script type="text/javascript">
-            var base_url = 'http://192.168.1.36/PRScreenServer/' ;
+            var base_url = 'http://localhost/PRScreenServer/' ;
         </script>
     </head>
     <body>
@@ -101,6 +103,9 @@
                         Manage Gallery Content
                           <a href="#" id="add_gallery_link">
                             <img src="<?php echo base_url(); ?>/styles/images/add-icon.png" class="add_icon"/>    
+                        </a>
+                        <a href="#" id="uploader">
+                            Uploader
                         </a>
                     </div>
                     <?php $this->load->view('gallery/gallery_table') ?>
@@ -200,6 +205,7 @@
 </div>
 
 <?php
+$this->load->view('gallery/gallery_upload');
 $this->load->view('gallery/add_gallery');
 $this->load->view('billboard/add_billboard');
 $this->load->view('billboard/edit_billboard');
