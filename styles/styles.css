@@ -159,6 +159,7 @@ html, body {
 }
 #album-file-list{
     display: inline-block;
+    
 }
 .album-file{
     width: 200px ;

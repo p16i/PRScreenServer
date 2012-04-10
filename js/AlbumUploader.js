@@ -28,7 +28,7 @@ $(function(){
     });
     $management_panel.dialog({
         height:700,
-        width :685,
+        width :700,
         autoOpen: false
             
     });
@@ -43,6 +43,7 @@ $(function(){
         
         /// Empty previous list 
         $album_list.empty();
+        $(".qq-upload-list").empty();
         
         /// Set Dialog Detail
         $management_panel.dialog( "option", "title", 'Manage "'+albumname+'" album' );
@@ -189,5 +190,8 @@ $(function(){
         }
 	
     }
+
+    galleryuploader = albumUploader ;
+    
     
 });

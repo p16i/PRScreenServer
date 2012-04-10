@@ -110,11 +110,14 @@ class qqFileUploader {
         }
         return $val;
     }
-
+    
     /**
-     * Returns array('success'=>true) or array('error'=>'error message')
+     * Create Thumbnail Function
+     * @param type $path
+     * @param type $image
+     * @param type $ext 
      */
-    function createThumnail($path,$image,$ext) {
+     function createThumnail($path,$image,$ext) {
         $images = $path.$image.".".$ext;
         $new_images = $path."thumbnail/".$image.".".$ext;
         $width = 200; //*** Fix Width & Heigh (Autu caculate) ***//
@@ -130,6 +133,11 @@ class qqFileUploader {
         ImageDestroy($images_fin);
     }
 
+
+    /**
+     * Returns array('success'=>true) or array('error'=>'error message')
+     */
+   
     function handleUpload($uploadDirectory, $replaceOldFile = FALSE) {
         if (!is_writable($uploadDirectory)) {
             return array('error' => "Server error. Upload directory isn't writable.");
