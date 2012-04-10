@@ -33,9 +33,10 @@ Class gallery extends CI_Controller {
                 echo 'Album name already existed';
             else {
                 // $this->add_file();          
-
+                /// Create Album's directory 
                 mkdir($path);
-
+                mkdir($path."/"."thumbnail");
+                
                 /// Upload Cover
 
                 $cover = 'cover';
@@ -125,6 +126,7 @@ Class gallery extends CI_Controller {
     function getImageInAlbum($album_name) {
 
         /// Real Path
+        $album_name  = urldecode($album_name);
         $real_path = realpath(".") . "/resources/gallery/" . $album_name;
         $url_path = base_url()."/resources/gallery/".$album_name;
 
@@ -135,11 +137,13 @@ Class gallery extends CI_Controller {
         $dh = opendir($real_path);
         while (false !== ($filename = readdir($dh))) {
             // $files[] = $filename;
-            if ($filename != "." && $filename != "..") {
+            $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+            if ($filename != "." && $filename != ".." && ($ext == 'jpg' || $ext == 'jpeg')) {
                // echo $url_path."/".$filename."<br>";
                 $image = array(
                     'filename'=>$filename,
-                    'path'=>$url_path."/".$filename
+                    'path'=>$url_path."/".$filename,
+                    'thumbnail'=>$url_path."/thumbnail/".$filename
                 );
                 $images[] = $image;
             }
@@ -147,11 +151,23 @@ Class gallery extends CI_Controller {
         
         $result = array(
             'album_name'=>$album_name,
+            'path'=> $url_path,
             'images'=>$images
         );
         
         /// Return JSON encode
         echo json_encode($result);
+    }
+    function deleteImage($album , $filename){
+        
+        $album = urldecode($album);
+        
+        $real_path = realpath(".") . "/resources/gallery/" . $album;
+        
+        $image = $real_path."/".$filename;
+        $thumbnail = $real_path."/thumbnail/".$filename;
+        unlink($image);
+        unlink($thumbnail);
     }
 
 }

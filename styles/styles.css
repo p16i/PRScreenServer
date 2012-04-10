@@ -193,4 +193,5 @@ html, body {
     vertical-align: bottom;
    text-align: center;
    display: none;
+    cursor: pointer;
 }
