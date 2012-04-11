@@ -129,6 +129,27 @@ Class Query extends CI_Controller{
         
     }
     
+    function gallery(){
+        $this->load->model("Album_Model");
+        $result = $this->Album_Model->get_album();
+        foreach($result as $row):
+            $path = 'resources/gallery/'.$row->Name.'/';
+            $images = get_filenames(realpath($path));
+            for($i=0;$i<count($images);$i++){
+                $images[$i]=base_url().$path.$images[$i];
+            }
+            //print_r($images);
+        
+            $album[] = array("id"=>$row->ID,
+                             "name"=>$row->Name,
+                             "quantity"=>$row->Quantity, 
+                             "cover"=>$row->Cover,
+                             "images"=>$images
+                            );
+        endforeach;
+        echo json_encode($album);
+    }
+    
 }
 
 
