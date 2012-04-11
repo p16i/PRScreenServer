@@ -18,7 +18,7 @@ Class gallery extends CI_Controller {
         $this->datatables->join('album_catagory', 'album_catagory.id=album_catagory_relation.catagoryid');
         $this->datatables->join('album', 'album_catagory_relation.albumid=album.id');
         $this->db->group_by("albumid");
-        $this->datatables->edit_column('albumid', '<a href=javascript:galleryuploader("$1") >Edit</a> | Delete', 'name');
+        $this->datatables->edit_column('albumid', '<a href=javascript:galleryuploader("$1") >Edit</a> | <a href="#" onclick="return delete_gallery_link($2)">Delete</a>', 'name,albumid');
         $this->datatables->edit_column('cover', '<img src="$1" class="thumbnail"/>', 'cover');
         $json = $this->datatables->generate('UTF8');
         //  print_r($json);
@@ -34,13 +34,14 @@ Class gallery extends CI_Controller {
             else {
                 // $this->add_file();          
                 /// Create Album's directory 
+                
                 mkdir($path);
                 mkdir($path . "/" . "thumbnail");
 
                 /// Upload Cover
 
                 $cover = 'cover';
-                $config['upload_path'] = $path;
+                $config['upload_path'] = $path.'/';
                 $config['allowed_types'] = 'gif|jpg|png';
                 $config['max_size'] = '0';
                 $config['max_width'] = '0';
@@ -55,7 +56,8 @@ Class gallery extends CI_Controller {
                 $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
                 $_POST['quantity'] = 0;
-                $_POST['cover'] = base_url() . "resources/gallery/" . $_POST['name'] . "/" . $filename; //$_POST['cover'] that come from submit form
+                $_POST['cover'] = base_url() . "resources/gallery/" . $_POST['name'] . "/" . $filename; 
+                ////$_POST['cover'] that come from submit form
                 //is index of image that is uploaded and selected
                 //as cover thumbnail
                 //$image_data = $this->upload->data();
@@ -64,6 +66,7 @@ Class gallery extends CI_Controller {
 
 
                 $this->Album_Model->insert($_POST);
+                //echo 'aaaa';
                 redirect(base_url() . "welcome#gallery_page", 'refresh');
             }
         }
@@ -77,7 +80,7 @@ Class gallery extends CI_Controller {
         //$this->index();
     }
 
-    function add_file() {// อันนี้ไม่เกี่ยว ใช้ในคลาสนี้เอง
+    function add_file() {// อั�?�?ี�?�?ม�?เ�?ี�?ยว �?�?�?�?�?�?ลาส�?ี�?เอ�?
         $path = 'resources/album/' . $_POST['name'];
         mkdir($path);
         $config['upload_path'] = $path . '/';
@@ -99,11 +102,12 @@ Class gallery extends CI_Controller {
         }
     }
 
-    function delete_album($id) {//$_POST => id
-        echo 'AAA : ' . $id;
+    function delete_album() {//$_POST => id
+        //echo 'AAA : ' . $id;
+        $id = $this->input->post('id');
         if ($id != '' && $id != null) {
             $row = $this->Album_Model->get_album_by_id($id);
-            $path = 'resources/album/' . $row->Name;
+            $path = 'resources/gallery/' . $row->Name;
 
             delete_files($path, TRUE);
             rmdir($path);
