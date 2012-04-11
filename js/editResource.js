@@ -327,6 +327,28 @@ function delete_marquee_link(id){
     return false;
 }
 
+function delete_guestbook_link(id){
+    var guestbook_data = 'id='+id;
+    $.ajax(
+                    {
+                        type: "POST",
+                        url: base_url+"admin/guestbook/delete_guestbook",
+                        data: marquee_data,
+                        dataType: "json",
+                        success: function(data){
+                            $('#guestbook_table').dataTable().fnDraw();
+                        
+                        // location.reload();
+                        },
+                        error: function(data){
+                            
+                            //alert(data);
+                        }
+                    }
+           );  
+    return false;
+}
+
 $(document).ready(function(){
    
     

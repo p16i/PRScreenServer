@@ -8,7 +8,7 @@ class Guestbook_Model extends CI_Model{
     }
     
     function get_guestbook_by_id($id){
-        $query = $this->db->query('SELECT ^ FROM guestbook 
+        $query = $this->db->query('SELECT * FROM guestbook 
                                     WHERE id = '.$id);
         return $query->first_row();
     }

@@ -30,7 +30,7 @@ Class guestbook extends CI_Controller {
         if (!isset($_POST['imagePath']))
             $_POST['imagePath'] = 'Null';
         $this->load->model("Guestbook_Model");
-        if (isset($_POST["name"])) {
+        if (isset($_POST["name"]) && isset($_POST["content"])) {
             $data = array("name" => $this->input->post("name"),
                 "content" => $this->input->post("content"),
                 "_datetime" => $now,
@@ -38,6 +38,8 @@ Class guestbook extends CI_Controller {
             );
 
             $this->Guestbook_Model->insert($data);
+        }else{
+            //error => name, content missing
         }
 
         $this->load->view("guestbook/thankyou.php");
@@ -61,7 +63,7 @@ Class guestbook extends CI_Controller {
 
 
 
-        $this->datatables->edit_column('id', 'Edit | Delete', 'id');
+        $this->datatables->edit_column('id', '<a href="" onclick="return delete_guestbook_link($1)>Delete</a>', 'id');
         $json = $this->datatables->generate('UTF8');
         //  print_r($json);
         echo str_replace(array("\n", "\r"), array("<br/>", ""), $json);
