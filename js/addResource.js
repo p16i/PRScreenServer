@@ -7,7 +7,7 @@
 
 
 $(document).ready(function(){
-    var base_url = 'http://localhost/PRScreenserver/';
+ //   var base_url = 'http://localhost/PRScreenserver/';
     //base_url is defined on main.php in script code
     
     $("#add_gallery_link").click(function(e){   

@@ -333,15 +333,39 @@ function delete_guestbook_link(id){
                     {
                         type: "POST",
                         url: base_url+"admin/guestbook/delete_guestbook",
-                        data: marquee_data,
+                        data: guestbook_data,
                         dataType: "json",
                         success: function(data){
+                            //alert("success");
                             $('#guestbook_table').dataTable().fnDraw();
                         
                         // location.reload();
                         },
                         error: function(data){
-                            
+                            alert("error");
+                            //alert(data);
+                        }
+                    }
+           );  
+    return false;
+}
+
+function delete_gallery_link(id){
+    var album_data = 'id='+id;
+    $.ajax(
+                    {
+                        type: "POST",
+                        url: base_url+"admin/gallery/delete_album",
+                        data: album_data,
+                        dataType: "json",
+                        success: function(data){
+                            //alert("success");
+                            $('#gallery_table').dataTable().fnDraw();
+                        
+                        // location.reload();
+                        },
+                        error: function(data){
+                            alert("error");
                             //alert(data);
                         }
                     }
