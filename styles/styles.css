@@ -153,3 +153,46 @@ html, body {
     margin-right: 10px;
 
 }
+#album-image-management{
+    display:none;
+    overflow-y: auto; 
+}
+#album-file-list{
+    display: inline-block;
+    
+}
+.album-file{
+    width: 200px ;
+    height: 133px;
+    padding: 5px;
+    display: inline-block;
+    margin : 5px 5px 0px 0px;
+/*    background: orange;*/
+    border: solid thin orange;
+    position: relative;
+     background: white;
+  
+}
+.album-image-panel{
+    width: 200px;
+    height: 133px;
+    text-align: center;
+   
+}
+.album-image{
+ 
+}
+.album-image-delete-panel{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 5px;
+    right: 5px;
+    z-index: 10;
+    background: black;
+    color: white;
+    vertical-align: bottom;
+   text-align: center;
+   display: none;
+    cursor: pointer;
+}

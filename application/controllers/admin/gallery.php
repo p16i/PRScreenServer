@@ -18,8 +18,8 @@ Class gallery extends CI_Controller {
         $this->datatables->join('album_catagory', 'album_catagory.id=album_catagory_relation.catagoryid');
         $this->datatables->join('album', 'album_catagory_relation.albumid=album.id');
         $this->db->group_by("albumid");
-        $this->datatables->edit_column('albumid', 'Edit | Delete', 'albumid');
-        $this->datatables->edit_column('cover', '<img src="resources/gallery/$1/$2" class="thumbnail"/>', 'name,cover');
+        $this->datatables->edit_column('albumid', '<a href=javascript:galleryuploader("$1") >Edit</a> | Delete', 'name');
+        $this->datatables->edit_column('cover', '<img src="$1" class="thumbnail"/>', 'cover');
         $json = $this->datatables->generate('UTF8');
         //  print_r($json);
         echo $json;
@@ -33,33 +33,38 @@ Class gallery extends CI_Controller {
                 echo 'Album name already existed';
             else {
                 // $this->add_file();          
-               
+                /// Create Album's directory 
                 mkdir($path);
+                mkdir($path . "/" . "thumbnail");
 
                 /// Upload Cover
-               
+
                 $cover = 'cover';
                 $config['upload_path'] = $path;
                 $config['allowed_types'] = 'gif|jpg|png';
                 $config['max_size'] = '0';
                 $config['max_width'] = '0';
                 $config['max_height'] = '0';
-                
+
                 $this->load->library('upload', $config);
                 $this->upload->do_upload('cover');
 
                 $image_data = $this->upload->data();
-                $filename= $image_data['file_name'];
-                // $count = count(get_filenames($path));
+                $filename = $image_data['file_name'];
+                
+                $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
                 $_POST['quantity'] = 0;
-                $_POST['cover'] = base_url()."resources/gallery/".$_POST['name']."/".$filename; //$_POST['cover'] that come from submit form
+                $_POST['cover'] = base_url() . "resources/gallery/" . $_POST['name'] . "/" . $filename; //$_POST['cover'] that come from submit form
                 //is index of image that is uploaded and selected
                 //as cover thumbnail
                 //$image_data = $this->upload->data();
 
+                $this->createThumnail($path."/", $filename, $ext);
 
 
                 $this->Album_Model->insert($_POST);
+                redirect(base_url() . "welcome#gallery_page", 'refresh');
             }
         }
         //   }else
@@ -120,6 +125,70 @@ Class gallery extends CI_Controller {
 
 
         //redirect(base_url().'index.php/admin/album/');
+    }
+
+    function getImageInAlbum($album_name) {
+
+        /// Real Path
+        $album_name = urldecode($album_name);
+        $real_path = realpath(".") . "/resources/gallery/" . $album_name;
+        $url_path = base_url() . "/resources/gallery/" . $album_name;
+
+        /// Images array
+        $images = array();
+
+        /// Traverse In album's directory
+        $dh = opendir($real_path);
+        while (false !== ($filename = readdir($dh))) {
+            // $files[] = $filename;
+            $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+            if ($filename != "." && $filename != ".." && ($ext == 'jpg' || $ext == 'jpeg')) {
+                // echo $url_path."/".$filename."<br>";
+                $image = array(
+                    'filename' => $filename,
+                    'path' => $url_path . "/" . $filename,
+                    'thumbnail' => $url_path . "/thumbnail/" . $filename
+                );
+                $images[] = $image;
+            }
+        }
+
+        $result = array(
+            'album_name' => $album_name,
+            'path' => $url_path,
+            'images' => $images
+        );
+
+        /// Return JSON encode
+        echo json_encode($result);
+    }
+
+    function deleteImage($album, $filename) {
+
+        $album = urldecode($album);
+
+        $real_path = realpath(".") . "/resources/gallery/" . $album;
+
+        $image = $real_path . "/" . $filename;
+        $thumbnail = $real_path . "/thumbnail/" . $filename;
+        unlink($image);
+        unlink($thumbnail);
+    }
+
+    function createThumnail($path, $image) {
+        $images = $path . $image ;
+        $new_images = $path . "thumbnail/" . $image ;
+        $width = 200; //*** Fix Width & Heigh (Autu caculate) ***//
+        $size = GetimageSize($images);
+        $height = round($width * $size[1] / $size[0]);
+        $images_orig = ImageCreateFromJPEG($images);
+        $photoX = ImagesX($images_orig);
+        $photoY = ImagesY($images_orig);
+        $images_fin = ImageCreateTrueColor($width, $height);
+        ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width + 1, $height + 1, $photoX, $photoY);
+        ImageJPEG($images_fin, $new_images);
+        ImageDestroy($images_orig);
+        ImageDestroy($images_fin);
     }
 
 }

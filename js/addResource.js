@@ -21,7 +21,8 @@ $(document).ready(function(){
                 Add: function() {
                     $("#gallery_form").attr("action",base_url+"admin/gallery/add_album"); //base_url is defined on main.php in script code    
                     $("#gallery_form").submit();
-                 
+                    
+                    
 
                 }
             }
