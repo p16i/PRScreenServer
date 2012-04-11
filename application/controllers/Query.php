@@ -138,13 +138,19 @@ Class Query extends CI_Controller{
             for($i=0;$i<count($images);$i++){
                 $images[$i]=base_url().$path.$images[$i];
             }
-            //print_r($images);
+            
+            $cat_result = $this->Album_Model->get_catagory($row->ID);
+            $cat = array();
+            foreach($cat_result as $cat_row):
+                array_push($cat, $cat_row->catagory_name);
+            endforeach;
         
             $album[] = array("id"=>$row->ID,
                              "name"=>$row->Name,
                              "quantity"=>$row->Quantity, 
                              "cover"=>$row->Cover,
-                             "images"=>$images
+                             "images"=>$images,
+                             "catagory"=>$cat
                             );
         endforeach;
         echo json_encode($album);
