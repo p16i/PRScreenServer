@@ -13,7 +13,12 @@ class Guestbook_Model extends CI_Model{
         return $query->first_row();
     }
     
-  
+    function get_last_guestbook(){
+        $query = $this->db->query('SELECT * FROM guestbook 
+                                    WHERE id = MAX(id)');
+        
+        return $query->first_row();
+    }
     
     function insert($data){
         $this->db->insert('guestbook',$data);
@@ -23,8 +28,6 @@ class Guestbook_Model extends CI_Model{
         $this->db->query('DELETE FROM guestbook
                             WHERE id = '.$id);
     }
-    
-    
 }
 
 ?>

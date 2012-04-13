@@ -106,7 +106,6 @@ Class Query extends CI_Controller{
                             "name"=>$row->Name,
                             "content"=>$row->Content,
                             "imagePath"=>base_url().'resources/guestbook/'.$row->ImagePath,
-                            "soundPath"=>base_url().'resources/guestbook/'.$row->SoundPath,
                             "dateTime"=>$row->_DateTime);
         endforeach; 
         echo json_encode($guestbook);
@@ -154,6 +153,18 @@ Class Query extends CI_Controller{
                             );
         endforeach;
         echo json_encode($album);
+    }
+    
+    function guestbook_last(){
+        $this->load->model("Guestbook_Model");
+        $row = $this->Guestbook_Model->get_last_guestbook();
+        $guestbook = array("id"=>$row->ID, 
+                            "name"=>$row->Name,
+                            "content"=>$row->Content,
+                            "imagePath"=>base_url().'resources/guestbook/'.$row->ImagePath,
+                            "dateTime"=>$row->_DateTime);
+        
+        echo json_encode($guestbook);
     }
     
 }
