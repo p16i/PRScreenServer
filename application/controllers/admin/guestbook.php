@@ -83,7 +83,12 @@ Class guestbook extends CI_Controller {
     }
 
     function isValidKey($cid, $key) {
-        return false;
+        $validKey = $this->Guestbook_model->get_qr_key($cid);
+        $isValid = false ; 
+        if($key == $validKey){
+            $isValid = true ; 
+        }
+        return $isValid;
     }
 
 }
