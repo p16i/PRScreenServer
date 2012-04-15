@@ -48,6 +48,7 @@ Class guestbook extends CI_Controller {
 
             $this->load->view("guestbook/thankyou.php");
         } else {
+           // echo "id " . $cid."  ".$key;
             $this->load->view("guestbook/401.php");
         }
     }
@@ -83,9 +84,9 @@ Class guestbook extends CI_Controller {
     }
 
     function isValidKey($cid, $key) {
-        $validKey = $this->Guestbook_model->get_qr_key($cid);
+        $validKey = $this->Guestbook_Model->get_qr_key($cid);
         $isValid = false ; 
-        if($key == $validKey){
+        if($key == $validKey->key){
             $isValid = true ; 
         }
         return $isValid;

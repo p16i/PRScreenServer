@@ -23,8 +23,11 @@ and open the template in the editor.
                 <h1>QRCode expired.</h1>
             </div>
             <div data-role="content" data-theme="a">
-                <center><img src="<?php echo base_url(); ?>/styles/images/mr_tle.png"/></center>
-                 Please refresh QRCode by hold on it and take it again.
+                <center>
+                    <h5> Please refresh "QRCode" by hold on it and take it again.</h5>
+                    <img src="<?php echo base_url(); ?>/styles/images/mr_tle.png"/>
+              
+                 </center>
 
             </div>
         </div>
