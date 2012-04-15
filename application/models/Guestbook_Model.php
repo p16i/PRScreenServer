@@ -57,6 +57,7 @@ class Guestbook_Model extends CI_Model{
                             WHERE client_id = '.$client_id);
         
     }
+    
 }
 
 ?>
