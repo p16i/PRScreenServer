@@ -22,7 +22,7 @@ class Album_Model extends CI_Model{
     }
     
     function get_catagory($id){//get all catagorys of this Album.
-        $query = $this->db->query("SELECT catagory_name
+        $query = $this->db->query("SELECT catagory_name,ID
                             FROM album_catagory 
                             JOIN album_catagory_relation ON CatagoryID = ID 
                             

@@ -46,7 +46,7 @@ and open the template in the editor.
 
                             </label>-->
                             <input id="name" placeholder="Name" value="" type="text" name="name" />
-                            <input type="hidden" name="imagepath" value="<?php echo $avatar_path; ?>" id="imagepath"/>
+                            <input type="hidden" name="imagepath" value="" id="imagepath"/>
 <!--                            <label for="textarea1">
                             </label>-->
                             <textarea id="textarea1" name="content"  placeholder="Your text" ></textarea>
@@ -102,17 +102,17 @@ and open the template in the editor.
                                     image_url = big_image ;
                                     $("#avatar-image").attr('src',image_url);
                                     $("#imagepath").val(image_url);
-                                    //  alert(image_url);
+                                   //   alert(image_url);
                                 }
                          
                         
                             });
                         },
                         error:function(){
-                            var default_image = "<?php echo $avatar_path ?>";
+                            var default_image = "";
                             $("#avatar-image").attr('src',default_image);
                             $("#imagepath").val(default_image);
-                            javascript:console.log("Chage Avatar");
+                         //   javascript:console.log("Chage Avatar");
                         }
                     });
            

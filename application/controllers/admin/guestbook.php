@@ -27,7 +27,7 @@ Class guestbook extends CI_Controller {
         $now = mdate('%Y-%m-%d %H:%i:%s', time());
         if (!isset($_POST['soundPath']))
             $_POST['soundPath'] = 'Null';
-        //if (!isset($_POST['imagePath']))
+        if (!isset($_POST['imagePath']))
             $_POST['imagePath'] = 'Null';
         $this->load->model("Guestbook_Model");
         if (isset($_POST["name"]) && isset($_POST["content"])) {

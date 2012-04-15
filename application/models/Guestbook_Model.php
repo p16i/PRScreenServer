@@ -15,7 +15,7 @@ class Guestbook_Model extends CI_Model{
     
     function get_last_guestbook(){
         $query = $this->db->query('SELECT * FROM guestbook 
-                                    WHERE id = MAX(id)');
+                                    WHERE id = (SELECT MAX(id) FROM guestbook)');
         
         return $query->first_row();
     }

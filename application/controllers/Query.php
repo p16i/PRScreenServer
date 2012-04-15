@@ -105,7 +105,7 @@ Class Query extends CI_Controller{
             $guestbook[] = array("id"=>$row->ID, 
                             "name"=>$row->Name,
                             "content"=>$row->Content,
-                            "imagePath"=>base_url().'resources/guestbook/'.$row->ImagePath,
+                            "imagePath"=>$row->ImagePath,
                             "dateTime"=>$row->_DateTime);
         endforeach; 
         echo json_encode($guestbook);
@@ -118,7 +118,7 @@ Class Query extends CI_Controller{
         foreach($result as $row):
             $aboutFac[] = array("id"=>$row->id, 
                                 "description"=>$row->description, 
-                                "path"=>$row->path,
+                                "path"=>base_url().'resources/aboutfac/'.$row->path,
                                 "isEnable"=>$row->isEnable,
                                 "cID"=>$row->catagory,
                                 "catagory"=>$row->name
@@ -141,7 +141,7 @@ Class Query extends CI_Controller{
             $cat_result = $this->Album_Model->get_catagory($row->ID);
             $cat = array();
             foreach($cat_result as $cat_row):
-                array_push($cat, $cat_row->catagory_name);
+                array_push($cat, $cat_row->ID);
             endforeach;
         
             $album[] = array("id"=>$row->ID,
@@ -161,7 +161,8 @@ Class Query extends CI_Controller{
         $guestbook = array("id"=>$row->ID, 
                             "name"=>$row->Name,
                             "content"=>$row->Content,
-                            "imagePath"=>base_url().'resources/guestbook/'.$row->ImagePath,
+                            //"imagePath"=>base_url().'resources/guestbook/'.$row->ImagePath,
+                            "imagePath"=>$row->ImagePath,
                             "dateTime"=>$row->_DateTime);
         
         echo json_encode($guestbook);

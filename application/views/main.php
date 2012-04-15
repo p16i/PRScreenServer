@@ -15,7 +15,7 @@
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url(); ?>styles/dataTable.css" />
         <link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url(); ?>styles/fileuploader/fileuploader.css" />
         <script type="text/javascript">
-            var base_url = 'http://10.0.100.4/PRScreenServer/' ;
+            var base_url = 'http://10.0.100.20/PRScreenServer/' ;
             
             /// Set on AlbumUploader.js
             var galleryuploader = null;
