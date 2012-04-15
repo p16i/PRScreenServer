@@ -47,6 +47,9 @@ and open the template in the editor.
                             </label>-->
                             <input id="name" placeholder="Name" value="" type="text" name="name" />
                             <input type="hidden" name="imagepath" value="" id="imagepath"/>
+                            <input type="hidden" name="cid" value="<?php echo $this->input->get('cid')?>" />
+                            <input type="hidden" name="key" value="<?php echo $this->input->get('key')?>" />
+                            
 <!--                            <label for="textarea1">
                             </label>-->
                             <textarea id="textarea1" name="content"  placeholder="Your text" ></textarea>
@@ -81,7 +84,8 @@ and open the template in the editor.
                 
                 $("#write_guestbook").submit(function(){
                     getAvatarPath(false);
-                   javascript:console.log("Formsubmit");
+                   /// Check Valid Check 
+                   
                 });
                 function getAvatarPath(async){
                     var name = $("#name").val();

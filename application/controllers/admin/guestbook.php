@@ -24,25 +24,33 @@ Class guestbook extends CI_Controller {
 
     function add_guestbook() {//$_POST => content, soundPath, imagePath, datetime
         ////////////////////////////////////////
-        $now = mdate('%Y-%m-%d %H:%i:%s', time());
-        if (!isset($_POST['soundPath']))
-            $_POST['soundPath'] = 'Null';
-        if (!isset($_POST['imagePath']))
-            $_POST['imagePath'] = 'Null';
-        $this->load->model("Guestbook_Model");
-        if (isset($_POST["name"]) && isset($_POST["content"])) {
-            $data = array("name" => $this->input->post("name"),
-                "content" => $this->input->post("content"),
-                "_datetime" => $now,
-                "imagepath" => $this->input->post("imagepath")
-            );
+        $cid = $this->input->post('cid');
+        $key = $this->input->post('key');
+        $isKeyValid = $this->isValidKey($cid, $key);
+        if ($isKeyValid) {
+            $now = mdate('%Y-%m-%d %H:%i:%s', time());
+            if (!isset($_POST['soundPath']))
+                $_POST['soundPath'] = 'Null';
+            if (!isset($_POST['imagePath']))
+                $_POST['imagePath'] = 'Null';
+            $this->load->model("Guestbook_Model");
+            if (isset($_POST["name"]) && isset($_POST["content"])) {
+                $data = array("name" => $this->input->post("name"),
+                    "content" => $this->input->post("content"),
+                    "_datetime" => $now,
+                    "imagepath" => $this->input->post("imagepath")
+                );
 
-            $this->Guestbook_Model->insert($data);
-        }else{
-            //error => name, content missing
+                $this->Guestbook_Model->insert($data);
+            } else {
+                //error => name, content missing
+            }
+
+            $this->load->view("guestbook/thankyou.php");
+        } else {
+           // echo "id " . $cid."  ".$key;
+            $this->load->view("guestbook/401.php");
         }
-
-        $this->load->view("guestbook/thankyou.php");
     }
 
     function delete_guestbook() {
@@ -73,6 +81,15 @@ Class guestbook extends CI_Controller {
         $data = curl_exec($url);
         echo $data;
         curl_close($url);
+    }
+
+    function isValidKey($cid, $key) {
+        $validKey = $this->Guestbook_Model->get_qr_key($cid);
+        $isValid = false ; 
+        if($key == $validKey->key){
+            $isValid = true ; 
+        }
+        return $isValid;
     }
 
 }
