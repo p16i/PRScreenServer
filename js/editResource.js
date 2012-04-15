@@ -31,8 +31,38 @@ function edit_billboard_link(id){
                     if($("#edit_billboard_content").attr("value")==""){
                         alert("Please enter content of billboard");
                     }else{
-                        $("#edit_billboard_form").attr("action",base_url+"admin/billboard/edit_billboard");
-                        $("#edit_billboard_form").submit();
+                        
+                        //Check image Size.
+                        var $input = document.getElementById('edit_billboard_image');
+                            if ($input.files && $input.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    var image = new Image();
+                                    image.src = reader.result;
+                                          image.onload = function() {
+                                            var maxWidth = 10000,
+                                                minWidth = 0,
+                                                maxHeight = 10000,
+                                                minHeight = 0,
+                                                imageWidth = image.width,
+                                                imageHeight = image.height;
+                                                alert("Width : "+imageWidth);
+                                                alert("Height : "+imageHeight);
+                                                if((imageWidth > maxWidth || imageWidth < minWidth )||(imageHeight > maxHeight || imageHeight < minHeight )){
+                                                    alert("Picture size out of specific range.\n  Width : "+minWidth+" to "+maxWidth+"\n  Height : "+minHeight+" to "+maxHeight);
+                                                }else{
+                                                    //add action url to form
+                                                    //alert("OK");
+                                                    $("#edit_billboard_form").attr("action",base_url+"admin/billboard/edit_billboard");
+                                                    $("#edit_billboard_form").submit();
+                                                }  
+                                          }
+                                };
+                                reader.readAsDataURL($input.files[0]);
+                            }
+                        
+                        
+                        
                     }
                     
               
@@ -163,8 +193,37 @@ function edit_location_link(id,roomname,imagepath,catagoryid,floor){
                 if($("#edit_location_roomname").attr("value")==""){
                         alert("Please enter room name");                      
                 }else{
-                    $("#edit_location_form").attr("action",base_url+"admin/location/edit_location");
-                    $("#edit_location_form").submit();
+                    
+                    //check image size
+                    var $input = document.getElementById('edit_location_image');
+                        if ($input.files && $input.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                var image = new Image();
+                                image.src = reader.result;
+                                      image.onload = function() {
+                                        var maxWidth = 10000,
+                                            minWidth = 0,
+                                            maxHeight = 10000,
+                                            minHeight = 0,
+                                            imageWidth = image.width,
+                                            imageHeight = image.height;
+                                            alert("Width : "+imageWidth);
+                                            alert("Height : "+imageHeight);
+                                            if((imageWidth > maxWidth || imageWidth < minWidth )||(imageHeight > maxHeight || imageHeight < minHeight )){
+                                                alert("Picture size out of specific range.\n  Width : "+minWidth+" to "+maxWidth+"\n  Height : "+minHeight+" to "+maxHeight);
+                                            }else{
+                                                //add action url to form
+                                                //alert("OK");
+                                                $("#edit_location_form").attr("action",base_url+"admin/location/edit_location");
+                                                $("#edit_location_form").submit();
+                                            }  
+                                      }
+                            };
+                            reader.readAsDataURL($input.files[0]);
+                        }
+                    
+                    
                 }
             }
         }
@@ -223,8 +282,37 @@ function edit_aboutfac_link(id,desc,imagepath,catagoryid){
                    alert("Please enter description");
                    //string.split(' ').join('');
                }else{
-                   $("#edit_aboutfac_form").attr("action",base_url+"admin/aboutfac/edit_aboutfac");
-                   $("#edit_aboutfac_form").submit();
+                   
+                   //check image size
+                    var $input = document.getElementById('edit_aboutfac_image');
+                    if ($input.files && $input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            var image = new Image();
+                            image.src = reader.result;
+                                  image.onload = function() {
+                                    var maxWidth = 10000,
+                                        minWidth = 0,
+                                        maxHeight = 10000,
+                                        minHeight = 0,
+                                        imageWidth = image.width,
+                                        imageHeight = image.height;
+                                        alert("Width : "+imageWidth);
+                                        alert("Height : "+imageHeight);
+                                        if((imageWidth > maxWidth || imageWidth < minWidth )||(imageHeight > maxHeight || imageHeight < minHeight )){
+                                            alert("Picture size out of specific range.\n  Width : "+minWidth+" to "+maxWidth+"\n  Height : "+minHeight+" to "+maxHeight);
+                                        }else{
+                                            //add action url to form
+                                            //alert("OK");
+                                            $("#edit_aboutfac_form").attr("action",base_url+"admin/aboutfac/edit_aboutfac");
+                                            $("#edit_aboutfac_form").submit();
+                                        }  
+                                  }
+                        };
+                        reader.readAsDataURL($input.files[0]);
+                    }
+                    
+                   
                }
            }
        }
@@ -383,8 +471,4 @@ $(document).ready(function(){
            
         } 
     });
-    
-    
-    
-    
 });

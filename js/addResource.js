@@ -47,20 +47,46 @@ $(document).ready(function(){
             height:500,
             buttons: {
                 Add: function() {
-
+                    
                     //check that content and image are not empty.
-                    //var x = $("#add_billboard_content").attr("value");
-                    //alert(x);
+                    
                     if($("#add_billboard_image").attr("value")==""){
                         alert("Please choose image to be uploaded");
                     }else if($("#add_billboard_content").attr("value")==""){
                         alert("Please enter content of billboard");
                     //string.split(' ').join('');
                     }else{
-                        //add action url to form
-                        //alert("OK");
-                        $("#billboard_form").attr("action",base_url+"admin/billboard/add_billboard"); //base_url is defined on main.php in script code    
-                        $("#billboard_form").submit();
+                        
+                        //check image size
+                        var $input = document.getElementById('add_billboard_image');
+                            if ($input.files && $input.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    var image = new Image();
+                                    image.src = reader.result;
+                                          image.onload = function() {
+                                            var maxWidth = 10000,
+                                                minWidth = 0,
+                                                maxHeight = 10000,
+                                                minHeight = 0,
+                                                imageWidth = image.width,
+                                                imageHeight = image.height;
+                                                alert("Width : "+imageWidth);
+                                                alert("Height : "+imageHeight);
+                                                if((imageWidth > maxWidth || imageWidth < minWidth )||(imageHeight > maxHeight || imageHeight < minHeight )){
+                                                    alert("Picture size out of specific range.\n  Width : "+minWidth+" to "+maxWidth+"\n  Height : "+minHeight+" to "+maxHeight);
+                                                }else{
+                                                    //add action url to form
+                                                    //alert("OK");
+                                                    $("#billboard_form").attr("action",base_url+"admin/billboard/add_billboard"); //base_url is defined on main.php in script code    
+                                                    $("#billboard_form").submit();
+                                                }  
+                                          }
+                                };
+                                reader.readAsDataURL($input.files[0]);
+                            }
+
+
                     }
 
                 }
@@ -139,8 +165,36 @@ $(document).ready(function(){
                         alert("Please choose image to be uploaded");
                     //string.split(' ').join('');
                     }else{
-                        $("#location_form").attr("action",base_url+"admin/location/add_location");
-                        $("#location_form").submit();
+                        
+                        //check image size
+                        var $input = document.getElementById('add_location_image');
+                            if ($input.files && $input.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    var image = new Image();
+                                    image.src = reader.result;
+                                          image.onload = function() {
+                                            var maxWidth = 10000,
+                                                minWidth = 0,
+                                                maxHeight = 10000,
+                                                minHeight = 0,
+                                                imageWidth = image.width,
+                                                imageHeight = image.height;
+                                                alert("Width : "+imageWidth);
+                                                alert("Height : "+imageHeight);
+                                                if((imageWidth > maxWidth || imageWidth < minWidth )||(imageHeight > maxHeight || imageHeight < minHeight )){
+                                                    alert("Picture size out of specific range.\n  Width : "+minWidth+" to "+maxWidth+"\n  Height : "+minHeight+" to "+maxHeight);
+                                                }else{
+                                                    //add action url to form
+                                                    //alert("OK");
+                                                    $("#location_form").attr("action",base_url+"admin/location/add_location");
+                                                    $("#location_form").submit();
+                                                }  
+                                          }
+                                };
+                                reader.readAsDataURL($input.files[0]);
+                            }
+                        
                     }
                 }
             }
@@ -171,9 +225,34 @@ $(document).ready(function(){
                     //string.split(' ').join('');
                     }else{
                     
-                        $("#aboutfac_form").attr("action",base_url+"admin/aboutfac/add_aboutfac");
-                        $("#aboutfac_form").submit();
-                    
+                        //check image size
+                        var $input = document.getElementById('add_aboutfac_image');
+                        if ($input.files && $input.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                var image = new Image();
+                                image.src = reader.result;
+                                      image.onload = function() {
+                                        var maxWidth = 10000,
+                                            minWidth = 0,
+                                            maxHeight = 10000,
+                                            minHeight = 0,
+                                            imageWidth = image.width,
+                                            imageHeight = image.height;
+                                            alert("Width : "+imageWidth);
+                                            alert("Height : "+imageHeight);
+                                            if((imageWidth > maxWidth || imageWidth < minWidth )||(imageHeight > maxHeight || imageHeight < minHeight )){
+                                                alert("Picture size out of specific range.\n  Width : "+minWidth+" to "+maxWidth+"\n  Height : "+minHeight+" to "+maxHeight);
+                                            }else{
+                                                //add action url to form
+                                                //alert("OK");
+                                                $("#aboutfac_form").attr("action",base_url+"admin/aboutfac/add_aboutfac");
+                                                $("#aboutfac_form").submit();
+                                            }  
+                                      }
+                            };
+                            reader.readAsDataURL($input.files[0]);
+                        }
                     }
                                     
                 }
