@@ -45,7 +45,7 @@ Class guestbook extends CI_Controller {
             } else {
                 //error => name, content missing
             }
-
+            $this->Guestbook_Model->update_key($cid);
             $this->load->view("guestbook/thankyou.php");
         } else {
            // echo "id " . $cid."  ".$key;
