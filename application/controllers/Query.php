@@ -168,6 +168,21 @@ Class Query extends CI_Controller{
         echo json_encode($guestbook);
     }
     
+    function qr_key(){
+        $client_id = $this->input->get("client_id");
+        $this->load->model("Guestbook_Model");
+        $row = $this->Guestbook_Model->get_qr_key($client_id);
+        if($row!=null){//if client_id is exists in qr_key table
+            $key = $row->key;
+        }else{//if client_id isn't exist in qr_key table
+            //create new row in table with new client_id
+            $key = $this->Guestbook_Model->add_client($client_id);
+        }
+        echo json_encode($key);
+    }
+    
+    
+    
 }
 
 
