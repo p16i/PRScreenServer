@@ -49,6 +49,14 @@ class Guestbook_Model extends CI_Model{
         $temp = str_split($gen, 4);
         return $temp[0];
     }
+    
+    function update_key($client_id){
+        $new_key = $this->gen_qr_key($client_id);
+        $this->db->query('UPDATE qr_key 
+                            SET qr_key.key = "'.$new_key.'" 
+                            WHERE client_id = '.$client_id);
+        
+    }
 }
 
 ?>
