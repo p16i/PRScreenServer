@@ -55,7 +55,6 @@ class Guestbook_Model extends CI_Model{
         $this->db->query('UPDATE qr_key 
                             SET qr_key.key = "'.$new_key.'" 
                             WHERE client_id = '.$client_id);
-        
     }
     
 }
