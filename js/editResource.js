@@ -32,34 +32,34 @@ function edit_billboard_link(id){
                         alert("Please enter content of billboard");
                     }else{
                         
-                        //Check image Size.
-                        var $input = document.getElementById('edit_billboard_image');
-                            if ($input.files && $input.files[0]) {
-                                var reader = new FileReader();
-                                reader.onload = function (e) {
-                                    var image = new Image();
-                                    image.src = reader.result;
-                                          image.onload = function() {
-                                            var maxWidth = 10000,
-                                                minWidth = 0,
-                                                maxHeight = 10000,
-                                                minHeight = 0,
-                                                imageWidth = image.width,
-                                                imageHeight = image.height;
-                                                alert("Width : "+imageWidth);
-                                                alert("Height : "+imageHeight);
-                                                if((imageWidth > maxWidth || imageWidth < minWidth )||(imageHeight > maxHeight || imageHeight < minHeight )){
-                                                    alert("Picture size out of specific range.\n  Width : "+minWidth+" to "+maxWidth+"\n  Height : "+minHeight+" to "+maxHeight);
-                                                }else{
-                                                    //add action url to form
-                                                    //alert("OK");
+//                        //Check image Size.
+//                        var $input = document.getElementById('edit_billboard_image');
+//                            if ($input.files && $input.files[0]) {
+//                                var reader = new FileReader();
+//                                reader.onload = function (e) {
+//                                    var image = new Image();
+//                                    image.src = reader.result;
+//                                          image.onload = function() {
+//                                            var maxWidth = 10000,
+//                                                minWidth = 0,
+//                                                maxHeight = 10000,
+//                                                minHeight = 0,
+//                                                imageWidth = image.width,
+//                                                imageHeight = image.height;
+//                                                alert("Width : "+imageWidth);
+//                                                alert("Height : "+imageHeight);
+//                                                if((imageWidth > maxWidth || imageWidth < minWidth )||(imageHeight > maxHeight || imageHeight < minHeight )){
+//                                                    alert("Picture size out of specific range.\n  Width : "+minWidth+" to "+maxWidth+"\n  Height : "+minHeight+" to "+maxHeight);
+//                                                }else{
+//                                                    //add action url to form
+//                                                    //alert("OK");
                                                     $("#edit_billboard_form").attr("action",base_url+"admin/billboard/edit_billboard");
                                                     $("#edit_billboard_form").submit();
-                                                }  
-                                          }
-                                };
-                                reader.readAsDataURL($input.files[0]);
-                            }
+//                                                }  
+//                                          }
+//                                };
+//                                reader.readAsDataURL($input.files[0]);
+//                            }
                         
                         
                         
@@ -194,34 +194,34 @@ function edit_location_link(id,roomname,imagepath,catagoryid,floor){
                         alert("Please enter room name");                      
                 }else{
                     
-                    //check image size
-                    var $input = document.getElementById('edit_location_image');
-                        if ($input.files && $input.files[0]) {
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                var image = new Image();
-                                image.src = reader.result;
-                                      image.onload = function() {
-                                        var maxWidth = 10000,
-                                            minWidth = 0,
-                                            maxHeight = 10000,
-                                            minHeight = 0,
-                                            imageWidth = image.width,
-                                            imageHeight = image.height;
-                                            alert("Width : "+imageWidth);
-                                            alert("Height : "+imageHeight);
-                                            if((imageWidth > maxWidth || imageWidth < minWidth )||(imageHeight > maxHeight || imageHeight < minHeight )){
-                                                alert("Picture size out of specific range.\n  Width : "+minWidth+" to "+maxWidth+"\n  Height : "+minHeight+" to "+maxHeight);
-                                            }else{
-                                                //add action url to form
-                                                //alert("OK");
+//                    //check image size
+//                    var $input = document.getElementById('edit_location_image');
+//                        if ($input.files && $input.files[0]) {
+//                            var reader = new FileReader();
+//                            reader.onload = function (e) {
+//                                var image = new Image();
+//                                image.src = reader.result;
+//                                      image.onload = function() {
+//                                        var maxWidth = 10000,
+//                                            minWidth = 0,
+//                                            maxHeight = 10000,
+//                                            minHeight = 0,
+//                                            imageWidth = image.width,
+//                                            imageHeight = image.height;
+//                                            alert("Width : "+imageWidth);
+//                                            alert("Height : "+imageHeight);
+//                                            if((imageWidth > maxWidth || imageWidth < minWidth )||(imageHeight > maxHeight || imageHeight < minHeight )){
+//                                                alert("Picture size out of specific range.\n  Width : "+minWidth+" to "+maxWidth+"\n  Height : "+minHeight+" to "+maxHeight);
+//                                            }else{
+//                                                //add action url to form
+//                                                //alert("OK");
                                                 $("#edit_location_form").attr("action",base_url+"admin/location/edit_location");
                                                 $("#edit_location_form").submit();
-                                            }  
-                                      }
-                            };
-                            reader.readAsDataURL($input.files[0]);
-                        }
+//                                            }  
+//                                      }
+//                            };
+//                            reader.readAsDataURL($input.files[0]);
+//                        }
                     
                     
                 }
@@ -283,35 +283,35 @@ function edit_aboutfac_link(id,desc,imagepath,catagoryid){
                    //string.split(' ').join('');
                }else{
                    
-                   //check image size
-                    var $input = document.getElementById('edit_aboutfac_image');
-                    if ($input.files && $input.files[0]) {
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            var image = new Image();
-                            image.src = reader.result;
-                                  image.onload = function() {
-                                    var maxWidth = 10000,
-                                        minWidth = 0,
-                                        maxHeight = 10000,
-                                        minHeight = 0,
-                                        imageWidth = image.width,
-                                        imageHeight = image.height;
-                                        alert("Width : "+imageWidth);
-                                        alert("Height : "+imageHeight);
-                                        if((imageWidth > maxWidth || imageWidth < minWidth )||(imageHeight > maxHeight || imageHeight < minHeight )){
-                                            alert("Picture size out of specific range.\n  Width : "+minWidth+" to "+maxWidth+"\n  Height : "+minHeight+" to "+maxHeight);
-                                        }else{
-                                            //add action url to form
-                                            //alert("OK");
+//                   //check image size
+//                    var $input = document.getElementById('edit_aboutfac_image');
+//                    if ($input.files && $input.files[0]) {
+//                        var reader = new FileReader();
+//                        reader.onload = function (e) {
+//                            var image = new Image();
+//                            image.src = reader.result;
+//                                  image.onload = function() {
+//                                    var maxWidth = 10000,
+//                                        minWidth = 0,
+//                                        maxHeight = 10000,
+//                                        minHeight = 0,
+//                                        imageWidth = image.width,
+//                                        imageHeight = image.height;
+//                                        alert("Width : "+imageWidth);
+//                                        alert("Height : "+imageHeight);
+//                                        if((imageWidth > maxWidth || imageWidth < minWidth )||(imageHeight > maxHeight || imageHeight < minHeight )){
+//                                            alert("Picture size out of specific range.\n  Width : "+minWidth+" to "+maxWidth+"\n  Height : "+minHeight+" to "+maxHeight);
+//                                        }else{
+//                                            //add action url to form
+//                                            //alert("OK");
                                             $("#edit_aboutfac_form").attr("action",base_url+"admin/aboutfac/edit_aboutfac");
                                             $("#edit_aboutfac_form").submit();
-                                        }  
-                                  }
-                        };
-                        reader.readAsDataURL($input.files[0]);
-                    }
-                    
+//                                        }  
+//                                  }
+//                        };
+//                        reader.readAsDataURL($input.files[0]);
+//                    }
+//                    
                    
                }
            }
