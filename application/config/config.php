@@ -15,7 +15,7 @@
 |
 */
 //$config['base_url']	= '';
-$config['base_url']	= 'http://localhost/PRScreenServer/';
+$config['base_url']	= 'http://10.0.100.8/PRScreenServer/';
 
 /*
 |--------------------------------------------------------------------------

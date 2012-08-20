@@ -50,8 +50,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['password'] = '';
+$db['default']['password'] = 'm1234';
 $db['default']['database'] = 'kinectprscreen';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

@@ -30,17 +30,34 @@ Class Query extends CI_Controller{
     
     function billboard(){
         $this->load->model("BillBoard_Model");
+        $this->load->model("News_Model");
         $result = $this->BillBoard_Model->get_enable();
         
+        
+        
         foreach($result as $row):
-            if($row->NewsID==null) $tempN = 0;
-            else $tempN = $row->NewsID;
+            if($row->NewsID==null) {
+                $newsID = 0;
+                $tempN = null;
+            }
+            else {
+                $newsID = $row->NewsID;
+                $news_row = $this->News_Model->get_news_by_id($row->NewsID);
+                $tempN = array("id"=>$news_row->ID,
+                            "headline"=>$news_row->Headline,
+                            "content"=>$news_row->Content,
+                            "dateTime"=>$news_row->_DateTime,
+                            "catagory"=>$news_row->Name,  #In db, column name of catagory is "Name" 
+                            "cID"=>$news_row->CatagoryID
+                            );
+            }
             $billboard[] = array("id"=>$row->ID, 
                             "content"=>$row->Content,
                             "imagePath"=>base_url().'resources/billboard/'.$row->ImagePath,
                             "dateTime"=>$row->_DateTime,
                             "isEnable"=>$row->isEnable, 
-                            "newsID"=>$tempN
+                            "newsID"=>$newsID,
+                            "newsObj"=>$tempN
                 );
         endforeach;
         echo json_encode($billboard);
@@ -133,9 +150,13 @@ Class Query extends CI_Controller{
         $result = $this->Album_Model->get_album();
         foreach($result as $row):
             $path = 'resources/gallery/'.$row->Name.'/';
-            $images = get_filenames(realpath($path));
-            for($i=0;$i<count($images);$i++){
-                $images[$i]=base_url().$path.$images[$i];
+            $images_temp = get_filenames(realpath($path));
+          //  echo count($images)."<br>"  ; 
+            for($i=0;$i<count($images_temp)/2;$i++){
+                
+                     $images[$i]=base_url().$path.$images_temp[$i];
+               
+               
             }
             
             $cat_result = $this->Album_Model->get_catagory($row->ID);
@@ -147,7 +168,7 @@ Class Query extends CI_Controller{
             $album[] = array("id"=>$row->ID,
                              "name"=>$row->Name,
                              "quantity"=>$row->Quantity, 
-                             "cover"=>$row->Cover,
+                             "cover"=>  base_url().$path.$row->Cover,
                              "images"=>$images,
                              "catagory"=>$cat
                             );
@@ -181,6 +202,13 @@ Class Query extends CI_Controller{
         echo json_encode($key);
     }
     
+    function qr_update(){
+        $client_id = $this->input->get("client_id");
+        $this->load->model("Guestbook_Model");
+        $this->Guestbook_Model->update_key($client_id);
+        $row = $this->Guestbook_Model->get_qr_key($client_id);
+        echo json_encode($row->key);
+    }
     
     
 }

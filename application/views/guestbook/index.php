@@ -114,7 +114,7 @@ and open the template in the editor.
                         },
                         error:function(){
                             var default_image = "";
-                            $("#avatar-image").attr('src',default_image);
+                            $("#avatar-image").attr('src',"<?php echo $avatar_path ?>");
                             $("#imagepath").val(default_image);
                          //   javascript:console.log("Chage Avatar");
                         }

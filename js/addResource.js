@@ -10,7 +10,7 @@ $(document).ready(function(){
  //   var base_url = 'http://localhost/PRScreenserver/';
     //base_url is defined on main.php in script code
     
-    $("#add_gallery_link").click(function(e){   
+    $("#add_gallery_link").click(function(e){
         //$("#billboard_form").attr("action",base_url+"admin/billboard/add_billboard");
       
         $( "#add_gallery" ).dialog({
@@ -19,11 +19,16 @@ $(document).ready(function(){
             height:500,
             buttons: {
                 Add: function() {
-                    $("#gallery_form").attr("action",base_url+"admin/gallery/add_album"); //base_url is defined on main.php in script code    
-                    $("#gallery_form").submit();
-                    
-                    
-
+                    if($("#add_album_cover").attr("value")==""){
+                        alert("Please choose image to be uploaded");
+                    }
+                    else if($("#add_album_name").attr("value")==""){
+                        alert("Please enter album name");
+                    }else{
+                        $("#add_album_name").attr("value",$("#add_album_name").attr("value").replace(/ /gi,"_"));
+                        $("#gallery_form").attr("action",base_url+"admin/gallery/add_album"); //base_url is defined on main.php in script code    
+                        $("#gallery_form").submit();
+                    }
                 }
             }
 

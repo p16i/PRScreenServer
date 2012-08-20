@@ -15,8 +15,8 @@ Class news extends CI_Controller {
         //echo "TEST".$_POST['datetime'];
         $_POST['_datetime'] = mdate('%Y-%m-%d %H:%i:%s', time());
         if ($_POST['headline'] != '' && $_POST['content'] != '') {
-
-
+            $_POST['content'] = addslashes($_POST['content']);
+            
             $data = array();
             $data['_datetime'] = $_POST['_datetime'];
             $data['headline'] = $_POST['headline'];
@@ -64,12 +64,13 @@ Class news extends CI_Controller {
     }
 
     function list_news() {
-        $this->datatables->select('_datetime,headline, content, c.name, news.id, c.id AS catagoryid');
+        $this->datatables->select('_datetime,headline, SUBSTRING(content FROM 1 FOR 70) AS cutted_content, c.name, news.id, c.id AS catagoryid, content');
         $this->datatables->from('news');
         $this->datatables->join('news_catagory as c','news.catagoryid=c.id');
         $this->datatables->edit_column('news.id', 
                                         '<a href="#news_page" onclick="return edit_news_link($1,\'$2\',\'$3\',$4)">Edit</a> | <a href="#" onclick="return delete_news_link($1)">Delete</a>',
                                         'news.id,headline, content,catagoryid');
+        $this->datatables->edit_column('cutted_content','$1...','cutted_content');
         $json = $this->datatables->generate('UTF8');
         
         //print_r($json);

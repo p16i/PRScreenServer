@@ -19,7 +19,7 @@ Class gallery extends CI_Controller {
         $this->datatables->join('album', 'album_catagory_relation.albumid=album.id');
         $this->db->group_by("albumid");
         $this->datatables->edit_column('albumid', '<a href=javascript:galleryuploader("$1") >Edit</a> | <a href="#" onclick="return delete_gallery_link($2)">Delete</a>', 'name,albumid');
-        $this->datatables->edit_column('cover', '<img src="$1" class="thumbnail"/>', 'cover');
+        $this->datatables->edit_column('cover', '<img src="'.base_url().'resources/gallery/$2/$1" class="thumbnail"/>', 'cover,name');
         $json = $this->datatables->generate('UTF8');
         //  print_r($json);
         echo $json;
@@ -56,7 +56,8 @@ Class gallery extends CI_Controller {
                 $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
                 $_POST['quantity'] = 0;
-                $_POST['cover'] = base_url() . "resources/gallery/" . $_POST['name'] . "/" . $filename; 
+                //$_POST['cover'] = base_url() . "resources/gallery/" . $_POST['name'] . "/" . $filename; 
+                $_POST['cover'] = $filename; 
                 ////$_POST['cover'] that come from submit form
                 //is index of image that is uploaded and selected
                 //as cover thumbnail
@@ -80,7 +81,7 @@ Class gallery extends CI_Controller {
         //$this->index();
     }
 
-    function add_file() {// à¸­à¸±à¸?à¸?à¸µà¹?à¹?à¸¡à¹?à¹€à¸?à¸µà¹?à¸¢à¸§ à¹?à¸?à¹?à¹?à¸?à¸?à¸¥à¸²à¸ªà¸?à¸µà¹?à¹€à¸­à¸?
+    function add_file() {// à¸­à¸±ï¿½?ï¿½?à¸µï¿½?ï¿½?à¸¡ï¿½?à¹€ï¿½?à¸µï¿½?à¸¢à¸§ ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?à¸¥à¸²à¸ªï¿½?à¸µï¿½?à¹€à¸­ï¿½?
         $path = 'resources/album/' . $_POST['name'];
         mkdir($path);
         $config['upload_path'] = $path . '/';
